@@ -1,0 +1,6 @@
+{
+  "name": "متجري الإلكتروني المتكامل",
+  "description": "منصة متكاملة لبيع وشراء المنتجات مع تصنيفات، صور، وصف، وإدارة الكميات.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
