@@ -29,7 +29,9 @@ var import_vite = require("vite");
 var import_path = __toESM(require("path"), 1);
 var import_url = require("url");
 var import_genai = require("@google/genai");
+var import_dotenv = __toESM(require("dotenv"), 1);
 var import_meta = {};
+import_dotenv.default.config();
 var getFilename = () => {
   try {
     return (0, import_url.fileURLToPath)(import_meta.url);
@@ -40,7 +42,7 @@ var getFilename = () => {
 var __filename = getFilename();
 var __dirname = import_path.default.dirname(__filename);
 function getGeminiClient() {
-  const apiKey = "AIzaSyDqE8t7nECJoKrWTQnXXCktRdcW9S7TnQw";
+  const apiKey = process.env.GEMINI_API_KEY;
   return new import_genai.GoogleGenAI({
     apiKey,
     httpOptions: {
