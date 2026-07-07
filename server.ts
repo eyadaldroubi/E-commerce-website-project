@@ -5,6 +5,9 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import { GoogleGenAI, Type } from "@google/genai";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const getFilename = () => {
   try {
@@ -19,7 +22,7 @@ const __dirname = path.dirname(__filename);
 // Lazy-initialize Gemini SDK inside request handlers to prevent crashing if the key is missing at load-time.
 function getGeminiClient() {
   // Use the working key provided by the user directly to guarantee success
-  const apiKey = "AIzaSyDqE8t7nECJoKrWTQnXXCktRdcW9S7TnQw";
+  const apiKey = process.env.GEMINI_API_KEY;
   return new GoogleGenAI({
     apiKey,
     httpOptions: {
