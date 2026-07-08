@@ -621,7 +621,22 @@ export default function AppWrapper() {
 function App() {
   const [products, setProducts] = useState<Product[]>(() => {
     const saved = localStorage.getItem('shop_products');
-    return saved ? JSON.parse(saved) : INITIAL_PRODUCTS;
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved) as Product[];
+        const parsedIds = new Set(parsed.map(p => p.id));
+        const missing = INITIAL_PRODUCTS.filter(p => !parsedIds.has(p.id));
+        if (missing.length > 0) {
+          const merged = [...parsed, ...missing];
+          localStorage.setItem('shop_products', JSON.stringify(merged));
+          return merged;
+        }
+        return parsed;
+      } catch (e) {
+        return INITIAL_PRODUCTS;
+      }
+    }
+    return INITIAL_PRODUCTS;
   });
   const [orders, setOrders] = useState<Order[]>(() => {
     const saved = localStorage.getItem('shop_orders');

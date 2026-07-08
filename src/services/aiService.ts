@@ -38,7 +38,15 @@ export const aiService = {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message, products, history }),
       });
-      if (!response.ok) throw new Error("API call failed");
+      if (!response.ok) {
+        try {
+          const errData = await response.json();
+          if (errData && errData.result) {
+            return errData.result;
+          }
+        } catch (_) {}
+        throw new Error("API call failed");
+      }
       const data = await response.json();
       return data.result || "عذراً، لم أتمكن من معالجة هذا الطلب.";
     } catch (error) {
