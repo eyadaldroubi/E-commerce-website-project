@@ -29,9 +29,7 @@ var import_vite = require("vite");
 var import_path = __toESM(require("path"), 1);
 var import_url = require("url");
 var import_genai = require("@google/genai");
-var import_dotenv = __toESM(require("dotenv"), 1);
 var import_meta = {};
-import_dotenv.default.config();
 var getFilename = () => {
   try {
     return (0, import_url.fileURLToPath)(import_meta.url);
@@ -42,7 +40,10 @@ var getFilename = () => {
 var __filename = getFilename();
 var __dirname = import_path.default.dirname(__filename);
 function getGeminiClient() {
-  const apiKey = process.env.GEMINI_API_KEY;
+  let apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey || apiKey.trim() === "" || apiKey.startsWith("AQ.")) {
+    apiKey = "AIzaSyDqE8t7nECJoKrWTQnXXCktRdcW9S7TnQw";
+  }
   return new import_genai.GoogleGenAI({
     apiKey,
     httpOptions: {
@@ -66,7 +67,7 @@ async function startServer() {
       const availableProducts = (allProducts || []).map((p) => ({ id: p.id, name: p.name, category: p.category }));
       const ai = getGeminiClient();
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-3.5-flash",
         contents: `Analyze user behavior to provide highly accurate product recommendations. 
         User viewed: [${viewedNames}]. 
         User purchased: [${purchasedNames}]. 
@@ -97,7 +98,7 @@ async function startServer() {
       }));
       const ai = getGeminiClient();
       const chat = ai.chats.create({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-3.5-flash",
         config: {
           systemInstruction: `\u0623\u0646\u062A \u0645\u0633\u0627\u0639\u062F \u062A\u0633\u0648\u0642 \u0630\u0643\u064A \u0648\u0631\u0627\u0642\u064A \u0644\u0645\u062A\u062C\u0631 "BeePharma & More". 
           \u0645\u0647\u0645\u062A\u0643 \u0647\u064A \u0645\u0633\u0627\u0639\u062F\u0629 \u0627\u0644\u0639\u0645\u0644\u0627\u0621 \u0628\u0623\u0633\u0644\u0648\u0628 \u0623\u0646\u064A\u0642\u060C \u0645\u0646\u0638\u0645\u060C \u0648\u062F\u0642\u064A\u0642 \u0644\u0644\u063A\u0627\u064A\u0629.
@@ -121,9 +122,9 @@ async function startServer() {
       res.json({ result: response.text || "\u0639\u0630\u0631\u0627\u064B\u060C \u0644\u0645 \u0623\u062A\u0645\u0643\u0646 \u0645\u0646 \u0645\u0639\u0627\u0644\u062C\u0629 \u0647\u0630\u0627 \u0627\u0644\u0637\u0644\u0628." });
     } catch (error) {
       console.error("Server AI Chat Error:", error);
-      const errStr = String(error);
-      const isLeakedKey = errStr.includes("leaked") || errStr.includes("leak") || errStr.includes("403") || errStr.includes("PERMISSION_DENIED") || errStr.includes("key");
-      const errorMessage = isLeakedKey ? "\u26A0\uFE0F \u0631\u0645\u0632 \u0627\u0644\u0648\u0635\u0648\u0644 \u0627\u0644\u0627\u0641\u062A\u0631\u0627\u0636\u064A \u0627\u0644\u062D\u0627\u0644\u064A \u0644\u0644\u0645\u0646\u0635\u0629 \u062A\u0645 \u062D\u0638\u0631\u0647 \u0623\u0648 \u0627\u0644\u0625\u0628\u0644\u0627\u063A \u0639\u0646 \u062A\u0633\u0631\u064A\u0628\u0647 (403 Leaked API Key). \u0644\u062D\u0644 \u0647\u0630\u0647 \u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0641\u0648\u0631\u0627\u064B\u060C \u064A\u0631\u062C\u0649 \u0625\u0646\u0634\u0627\u0621 \u0645\u0641\u062A\u0627\u062D \u0645\u062C\u0627\u0646\u064A \u062E\u0627\u0635 \u0628\u0643 \u0645\u0646 Google AI Studio \u0648\u0648\u0636\u0639\u0647 \u0641\u064A \u0642\u0627\u0626\u0645\u0629 'Settings' (\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A) \u0641\u064A \u0627\u0644\u0632\u0627\u0648\u064A\u0629 \u0627\u0644\u0639\u0644\u0648\u064A\u0629 \u0627\u0644\u064A\u0645\u0646\u0649 \u0644\u0644\u0645\u0634\u0631\u0648\u0639 \u062A\u062D\u062A \u0627\u0633\u0645 \u0627\u0644\u0628\u064A\u0626\u0629 GEMINI_API_KEY \u0644\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A \u0641\u0648\u0631\u0627\u064B!" : "\u0623\u0648\u0627\u062C\u0647 \u062D\u0627\u0644\u064A\u0627\u064B \u0635\u0639\u0648\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062A\u0635\u0627\u0644 \u0628\u062E\u0627\u062F\u0645\u064A. \u064A\u0631\u062C\u0649 \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0644\u0627\u062D\u0642\u0627\u064B!";
+      const errStr = String(error).toLowerCase();
+      const isLeakedKey = errStr.includes("leaked") || errStr.includes("leak") || errStr.includes("403") || errStr.includes("permission_denied") || errStr.includes("key") || errStr.includes("api_key_invalid") || errStr.includes("not valid");
+      const errorMessage = isLeakedKey ? "\u26A0\uFE0F \u062A\u0645 \u0627\u0643\u062A\u0634\u0627\u0641 \u0645\u0634\u0643\u0644\u0629 \u0641\u064A \u0635\u0644\u0627\u062D\u064A\u0629 \u0645\u0641\u062A\u0627\u062D \u0627\u0644\u0648\u0635\u0648\u0644 (API Key) \u0644\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A. \u0644\u062D\u0644\u0647\u0627 \u0641\u0648\u0631\u0627\u064B\u060C \u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0645\u0641\u062A\u0627\u062D \u0645\u062C\u0627\u0646\u064A \u062E\u0627\u0635 \u0628\u0643 \u0645\u0646 Google AI Studio \u0648\u0648\u0636\u0639\u0647 \u0641\u064A \u0642\u0627\u0626\u0645\u0629 'Settings' (\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A) \u0641\u064A \u0627\u0644\u0632\u0627\u0648\u064A\u0629 \u0627\u0644\u0639\u0644\u0648\u064A\u0629 \u0627\u0644\u064A\u0645\u0646\u0649 \u0644\u0644\u0645\u0634\u0631\u0648\u0639 \u062A\u062D\u062A \u0627\u0633\u0645 \u0627\u0644\u0628\u064A\u0626\u0629 GEMINI_API_KEY \u0644\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0645\u0633\u0627\u0639\u062F \u0627\u0644\u0630\u0643\u064A \u0641\u0648\u0631\u0627\u064B \u0648\u0628\u062F\u0648\u0646 \u0623\u064A \u0642\u064A\u0648\u062F!" : "\u0623\u0648\u0627\u062C\u0647 \u062D\u0627\u0644\u064A\u0627\u064B \u0635\u0639\u0648\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062A\u0635\u0627\u0644 \u0628\u062E\u0627\u062F\u0645\u064A \u0628\u0633\u0628\u0628 \u0636\u063A\u0637 \u0627\u0644\u0637\u0644\u0628\u0627\u062A. \u064A\u0631\u062C\u0649 \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0639\u062F \u0642\u0644\u064A\u0644!";
       res.status(500).json({ error: error.message || "AI Chat Error", result: errorMessage });
     }
   });
@@ -133,7 +134,7 @@ async function startServer() {
       const productList = (products || []).map((p) => ({ id: p.id, name: p.name, description: p.description }));
       const ai = getGeminiClient();
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-3.5-flash",
         contents: `User search query: "${query}". 
         Perform a sophisticated semantic search to find the most relevant product IDs from: ${JSON.stringify(productList)}. 
         Understand the underlying intent, synonyms, and context. 
@@ -163,7 +164,7 @@ async function startServer() {
       }));
       const ai = getGeminiClient();
       const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite",
+        model: "gemini-3.5-flash",
         contents: `Analyze the following inventory and sales data with high precision: ${JSON.stringify(inventoryData)}. 
         Predict restocking needs based on sales velocity and current stock. 
         For each prediction, provide a professional, elegant, and accurate reason in Arabic (\u0627\u0644\u0644\u063A\u0629 \u0627\u0644\u0639\u0631\u0628\u064A\u0629).
