@@ -5,6 +5,8 @@ import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import { GoogleGenAI, Type } from "@google/genai";
+import { INITIAL_PRODUCTS } from "./src/constants";
+import fs from "fs";
 
 const getFilename = () => {
   try {
@@ -15,6 +17,33 @@ const getFilename = () => {
 };
 const __filename = getFilename();
 const __dirname = path.dirname(__filename);
+
+// Path to store persistent products
+const PRODUCTS_FILE_PATH = path.join(process.cwd(), "products-data.json");
+
+// Helper to get products from disk
+function getStoredProducts() {
+  try {
+    if (fs.existsSync(PRODUCTS_FILE_PATH)) {
+      const data = fs.readFileSync(PRODUCTS_FILE_PATH, "utf-8");
+      return JSON.parse(data);
+    }
+  } catch (err) {
+    console.error("Error reading stored products:", err);
+  }
+  return null;
+}
+
+// Helper to save products to disk
+function saveStoredProducts(products: any[]) {
+  try {
+    fs.writeFileSync(PRODUCTS_FILE_PATH, JSON.stringify(products, null, 2), "utf-8");
+    return true;
+  } catch (err) {
+    console.error("Error saving products:", err);
+    return false;
+  }
+}
 
 // Lazy-initialize Gemini SDK inside request handlers to prevent crashing if the key is missing at load-time.
 function getGeminiClient() {
@@ -42,6 +71,34 @@ async function startServer() {
 
   // JSON Body Parser for APIs
   app.use(express.json());
+
+  // API route: Get Products
+  app.get("/api/products", (req, res) => {
+    const stored = getStoredProducts();
+    if (stored) {
+      return res.json(stored);
+    }
+    return res.json(INITIAL_PRODUCTS);
+  });
+
+  // API route: Save Products
+  app.post("/api/products", (req, res) => {
+    const products = req.body;
+    if (Array.isArray(products)) {
+      const success = saveStoredProducts(products);
+      if (success) {
+        // Broadcast to all other clients via WebSocket
+        wss.clients.forEach((client) => {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(JSON.stringify({ type: 'UPDATE_PRODUCTS', data: products }));
+          }
+        });
+        return res.json({ success: true, message: "Products saved" });
+      }
+      return res.status(500).json({ error: "Failed to write products to disk" });
+    }
+    return res.status(400).json({ error: "Invalid products data format. Expected an array." });
+  });
 
   // API route: Recommend
   app.post("/api/gemini/recommend", async (req, res) => {

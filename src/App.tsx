@@ -753,6 +753,7 @@ function App() {
   // WebSocket Logic
   const wsRef = useRef<WebSocket | null>(null);
   const isRemoteUpdate = useRef(false);
+  const hasLoadedFromServer = useRef(false);
 
   useEffect(() => {
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
@@ -806,6 +807,27 @@ function App() {
     };
   }, []);
 
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const res = await fetch("/api/products");
+        if (res.ok) {
+          const data = await res.json();
+          isRemoteUpdate.current = true;
+          setProducts(data);
+          hasLoadedFromServer.current = true;
+          setTimeout(() => {
+            isRemoteUpdate.current = false;
+          }, 100);
+        }
+      } catch (err) {
+        console.error("Failed to load products from server:", err);
+        hasLoadedFromServer.current = true;
+      }
+    };
+    loadProducts();
+  }, []);
+
   const broadcastUpdate = useCallback((type: string, data: any) => {
     if (wsRef.current?.readyState === WebSocket.OPEN && !isRemoteUpdate.current) {
       wsRef.current.send(JSON.stringify({ type, data }));
@@ -853,9 +875,26 @@ function App() {
     safeLocalStorageSetItem('shop_current_user', JSON.stringify(currentUser));
   }, [currentUser]);
 
-  // Save products to localStorage
+  // Save products to localStorage and server
   React.useEffect(() => {
     safeLocalStorageSetItem('shop_products', JSON.stringify(products));
+
+    if (hasLoadedFromServer.current) {
+      const saveToServer = async () => {
+        try {
+          await fetch("/api/products", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify(products)
+          });
+        } catch (err) {
+          console.error("Failed to save products to server:", err);
+        }
+      };
+      saveToServer();
+    }
   }, [products]);
 
   // Save orders to localStorage
