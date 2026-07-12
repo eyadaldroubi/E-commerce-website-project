@@ -935,9 +935,9 @@ async function startServer() {
   app.get("/api/products", (req, res) => {
     const stored = getStoredProducts();
     if (stored) {
-      return res.json(stored);
+      return res.json({ hasStored: true, products: stored });
     }
-    return res.json(INITIAL_PRODUCTS);
+    return res.json({ hasStored: false, products: INITIAL_PRODUCTS });
   });
   app.post("/api/products", (req, res) => {
     const products = req.body;
