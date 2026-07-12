@@ -610,6 +610,14 @@ const DEFAULT_USERS: User[] = [
   { id: '2', name: 'إياد الدروبي', email: 'user@shop.com', password: 'user', role: 'user', avatar: 'https://i.pravatar.cc/150?u=user' },
 ];
 
+const safeLocalStorageSetItem = (key: string, value: string) => {
+  try {
+    localStorage.setItem(key, value);
+  } catch (error) {
+    console.error(`Failed to save to localStorage for key "${key}":`, error);
+  }
+};
+
 export default function AppWrapper() {
   return (
     <ErrorBoundary>
@@ -628,7 +636,7 @@ function App() {
         const missing = INITIAL_PRODUCTS.filter(p => !parsedIds.has(p.id));
         if (missing.length > 0) {
           const merged = [...parsed, ...missing];
-          localStorage.setItem('shop_products', JSON.stringify(merged));
+          safeLocalStorageSetItem('shop_products', JSON.stringify(merged));
           return merged;
         }
         return parsed;
@@ -715,7 +723,7 @@ function App() {
   }, [activeDeals.length]);
 
   useEffect(() => {
-    localStorage.setItem('shop_deals', JSON.stringify(deals));
+    safeLocalStorageSetItem('shop_deals', JSON.stringify(deals));
   }, [deals]);
 
   // AI State
@@ -837,57 +845,57 @@ function App() {
 
   // Save users to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_users', JSON.stringify(users));
+    safeLocalStorageSetItem('shop_users', JSON.stringify(users));
   }, [users]);
 
   // Save current user to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_current_user', JSON.stringify(currentUser));
+    safeLocalStorageSetItem('shop_current_user', JSON.stringify(currentUser));
   }, [currentUser]);
 
   // Save products to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_products', JSON.stringify(products));
+    safeLocalStorageSetItem('shop_products', JSON.stringify(products));
   }, [products]);
 
   // Save orders to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_orders', JSON.stringify(orders));
+    safeLocalStorageSetItem('shop_orders', JSON.stringify(orders));
   }, [orders]);
 
   // Save vendors to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_vendors', JSON.stringify(vendors));
+    safeLocalStorageSetItem('shop_vendors', JSON.stringify(vendors));
   }, [vendors]);
 
   // Save hero images to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_hero_images', JSON.stringify(heroImages));
+    safeLocalStorageSetItem('shop_hero_images', JSON.stringify(heroImages));
   }, [heroImages]);
 
   // Save customers to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_customers', JSON.stringify(customers));
+    safeLocalStorageSetItem('shop_customers', JSON.stringify(customers));
   }, [customers]);
 
   // Save cart to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_cart', JSON.stringify(cart));
+    safeLocalStorageSetItem('shop_cart', JSON.stringify(cart));
   }, [cart]);
 
   // Save wishlist to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_wishlist', JSON.stringify(wishlist));
+    safeLocalStorageSetItem('shop_wishlist', JSON.stringify(wishlist));
   }, [wishlist]);
 
   // Save view to localStorage
   React.useEffect(() => {
-    localStorage.setItem('shop_view', view);
+    safeLocalStorageSetItem('shop_view', view);
   }, [view]);
 
   // AI Effects
   useEffect(() => {
-    localStorage.setItem('shop_viewed_products', JSON.stringify(viewedProducts));
+    safeLocalStorageSetItem('shop_viewed_products', JSON.stringify(viewedProducts));
   }, [viewedProducts]);
 
   useEffect(() => {
@@ -1190,30 +1198,96 @@ function App() {
     setOrders(prev => prev.map(o => o.id === orderId ? { ...o, status, trackingNumber: tracking || o.trackingNumber } : o));
   }, []);
 
-  const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
+  const processHighResImage = useCallback((file: File): Promise<string> => {
+    return new Promise((resolve) => {
       const reader = new FileReader();
-      reader.onloadend = () => {
-        setNewProduct(prev => ({ ...prev, image: reader.result as string }));
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          
+          // Max high-resolution bounds (1000px is perfect for sharp high-res product displays without bloating storage)
+          const MAX_DIM = 1000;
+          if (width > MAX_DIM || height > MAX_DIM) {
+            if (width > height) {
+              height = Math.round((height * MAX_DIM) / width);
+              width = MAX_DIM;
+            } else {
+              width = Math.round((width * MAX_DIM) / height);
+              height = MAX_DIM;
+            }
+          }
+          
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            // Keep transparency for PNG files
+            if (file.type === 'image/png') {
+              ctx.clearRect(0, 0, width, height);
+            } else {
+              ctx.fillStyle = '#FFFFFF';
+              ctx.fillRect(0, 0, width, height);
+            }
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Output as PNG if original is PNG, otherwise JPEG at highly optimized quality
+            const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+            const quality = file.type === 'image/png' ? undefined : 0.85;
+            resolve(canvas.toDataURL(mimeType, quality));
+          } else {
+            resolve(e.target?.result as string);
+          }
+        };
+        img.onerror = () => {
+          resolve(e.target?.result as string);
+        };
+        img.src = e.target?.result as string;
       };
-      reader.readAsDataURL(file);
-    }
-  }, []);
-
-  const handleGalleryUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []) as File[];
-    files.forEach((file: File) => {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setNewProduct(prev => ({ 
-          ...prev, 
-          images: [...(prev.images || []), reader.result as string] 
-        }));
+      reader.onerror = () => {
+        resolve('');
       };
       reader.readAsDataURL(file);
     });
   }, []);
+
+  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const dataUrl = await processHighResImage(file);
+      if (dataUrl) {
+        setNewProduct(prev => ({ ...prev, image: dataUrl }));
+        const formatLabel = file.type === 'image/png' ? 'PNG' : 'JPEG';
+        setNotification({ 
+          message: `تم رفع صورة ${formatLabel} عالية الدقة بنجاح!`, 
+          type: 'success' 
+        });
+        setTimeout(() => setNotification(null), 3000);
+      }
+      e.target.value = ''; // Reset to allow re-uploading same file
+    }
+  }, [processHighResImage]);
+
+  const handleGalleryUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = Array.from(e.target.files || []) as File[];
+    for (const file of files) {
+      const dataUrl = await processHighResImage(file);
+      if (dataUrl) {
+        setNewProduct(prev => ({ 
+          ...prev, 
+          images: [...(prev.images || []), dataUrl] 
+        }));
+      }
+    }
+    setNotification({ 
+      message: 'تم إضافة الصور لمعرض المنتج بجودة عالية!', 
+      type: 'success' 
+    });
+    setTimeout(() => setNotification(null), 3000);
+    e.target.value = ''; // Reset to allow re-uploading same file
+  }, [processHighResImage]);
 
   const removeGalleryImage = useCallback((index: number) => {
     setNewProduct(prev => ({
@@ -2364,58 +2438,83 @@ function App() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-900">صورة المنتج</label>
-                    <div className="flex flex-col items-center gap-4 p-4 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50 hover:bg-slate-100 transition-all cursor-pointer relative group">
+                    <label className="text-sm font-bold text-slate-900 flex justify-between items-center">
+                      <span>صورة المنتج</span>
+                      <span className="text-xs text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-full font-bold">
+                        PNG عالي الدقة مدعوم ✨
+                      </span>
+                    </label>
+                    
+                    {/* Image Source Toggle/Input */}
+                    <div className="flex gap-2 mb-2">
+                      <input 
+                        type="text" 
+                        placeholder="أو الصق رابط صورة عالية الدقة مباشرة (بصيغة PNG أو JPG)"
+                        className="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-xs focus:ring-2 focus:ring-indigo-100 text-slate-900 transition-all text-right"
+                        value={newProduct.image && newProduct.image.startsWith('data:') ? '' : newProduct.image || ''}
+                        onChange={e => setNewProduct({...newProduct, image: e.target.value || 'https://picsum.photos/seed/new/400/400'})}
+                      />
+                    </div>
+
+                    <div className="flex flex-col items-center gap-4 p-4 border-2 border-dashed border-indigo-200 rounded-2xl bg-slate-50 hover:bg-slate-100/50 transition-all cursor-pointer relative group">
                       {newProduct.image ? (
-                        <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+                        <div className="relative w-full aspect-video rounded-xl overflow-hidden bg-slate-200/50 flex items-center justify-center">
+                          {/* Checkerboard background for transparent PNG preview */}
+                          <div className="absolute inset-0 bg-[linear-gradient(45deg,#ccc_25%,transparent_25%),linear-gradient(-45deg,#ccc_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#ccc_75%),linear-gradient(-45deg,transparent_75%,#ccc_75%)] bg-[size:10px_10px] bg-[position:0_0,0_5px,5px_-5px,-5px_0] opacity-30" />
                           <img 
                             src={newProduct.image} 
                             alt="Preview" 
-                            className="w-full h-full object-cover"
+                            className="relative max-h-full max-w-full object-contain z-10"
                             referrerPolicy="no-referrer"
                           />
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span className="text-white text-sm font-bold">تغيير الصورة</span>
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1 z-20">
+                            <span className="text-white text-sm font-bold">تغيير الصورة أو رفع ملف جديد</span>
+                            <span className="text-white/80 text-xs font-medium">يدعم PNG و JPG و WebP عالية الدقة</span>
                           </div>
                         </div>
                       ) : (
                         <div className="flex flex-col items-center py-4">
-                          <div className="p-3 bg-slate-50 border border-slate-100 rounded-full mb-2">
+                          <div className="p-3 bg-indigo-50 border border-indigo-100 rounded-full mb-2">
                             <Upload className="w-6 h-6 text-indigo-600" />
                           </div>
-                          <span className="text-sm text-slate-500">اضغط لرفع صورة المنتج</span>
+                          <span className="text-sm font-bold text-slate-700">اسحب أو اضغط لرفع صورة</span>
+                          <span className="text-xs text-slate-400 mt-1">PNG (بشفافية كاملة) أو JPG عالية الدقة</span>
                         </div>
                       )}
                       <input 
                         type="file" 
-                        accept="image/*"
-                        className="absolute inset-0 opacity-0 cursor-pointer"
+                        accept="image/png, image/jpeg, image/jpg, image/webp"
+                        className="absolute inset-0 opacity-0 cursor-pointer z-30"
                         onChange={handleImageUpload}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-900">معرض صور المنتج (اختياري)</label>
+                    <label className="text-sm font-bold text-slate-900 flex justify-between items-center">
+                      <span>معرض صور $(<span className="text-[10px] text-slate-400 font-medium">يدعم رفع ملفات متعددة</span>)</span>
+                    </label>
                     <div className="grid grid-cols-4 gap-2">
                       {(newProduct.images || []).map((img, idx) => (
-                        <div key={idx} className="relative aspect-square rounded-lg overflow-hidden group">
-                          <img src={img} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                        <div key={idx} className="relative aspect-square rounded-lg overflow-hidden group border border-slate-100 bg-slate-50 flex items-center justify-center">
+                          <div className="absolute inset-0 bg-[linear-gradient(45deg,#eee_25%,transparent_25%),linear-gradient(-45deg,#eee_25%,transparent_25%),linear-gradient(45deg,transparent_75%,#eee_75%),linear-gradient(-45deg,transparent_75%,#eee_75%)] bg-[size:6px_6px] bg-[position:0_0,0_3px,3px_-3px,-3px_0] opacity-30" />
+                          <img src={img} className="relative max-h-full max-w-full object-contain z-10" referrerPolicy="no-referrer" />
                           <button 
                             onClick={() => removeGalleryImage(idx)}
-                            className="absolute top-1 right-1 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                            className="absolute top-1 right-1 p-1 bg-red-500 hover:bg-red-600 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity shadow-sm z-20"
                           >
                             <X className="w-3 h-3" />
                           </button>
                         </div>
                       ))}
-                      <div className="relative aspect-square border-2 border-dashed border-slate-200 rounded-lg bg-slate-50 hover:bg-slate-100 transition-all flex items-center justify-center cursor-pointer">
-                        <Plus className="w-6 h-6 text-slate-400" />
+                      <div className="relative aspect-square border-2 border-dashed border-indigo-100 rounded-lg bg-slate-50 hover:bg-slate-100 transition-all flex flex-col items-center justify-center cursor-pointer p-1">
+                        <Plus className="w-5 h-5 text-indigo-500 mb-0.5" />
+                        <span className="text-[9px] font-bold text-slate-400">إضافة صورة</span>
                         <input 
                           type="file" 
                           multiple 
-                          accept="image/*" 
-                          className="absolute inset-0 opacity-0 cursor-pointer" 
+                          accept="image/png, image/jpeg, image/jpg, image/webp" 
+                          className="absolute inset-0 opacity-0 cursor-pointer z-30" 
                           onChange={handleGalleryUpload}
                         />
                       </div>

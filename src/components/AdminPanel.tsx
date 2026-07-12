@@ -142,6 +142,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
     productId: ''
   });
 
+
+
   return (
     <motion.div 
       key="admin"
@@ -1173,6 +1175,8 @@ const AdminPanel: React.FC<AdminPanelProps> = ({
           </motion.div>
         </div>
       )}
+
+
     </motion.div>
   );
 };
