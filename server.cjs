@@ -956,8 +956,8 @@ async function startServer() {
     return res.status(400).json({ error: "Invalid products data format. Expected an array." });
   });
   app.post("/api/gemini/recommend", async (req, res) => {
+    const { viewedProducts, allProducts, purchaseHistory } = req.body;
     try {
-      const { viewedProducts, allProducts, purchaseHistory } = req.body;
       const viewedNames = (viewedProducts || []).map((p) => p.name).join(", ");
       const purchasedNames = (purchaseHistory || []).flatMap((o) => (o.items || []).map((i) => i.name)).join(", ");
       const availableProducts = (allProducts || []).map((p) => ({ id: p.id, name: p.name, category: p.category }));
@@ -980,13 +980,37 @@ async function startServer() {
       });
       res.json({ result: JSON.parse(response.text || "[]") });
     } catch (error) {
-      console.error("Server AI Recommendation Error:", error);
-      res.status(500).json({ error: error.message || "AI Error", result: [] });
+      console.warn("Server AI Recommendation failed, using programmatic fallback:", error.message || error);
+      const viewedIds = new Set((viewedProducts || []).map((p) => p.id));
+      const viewedCategories = new Set((viewedProducts || []).map((p) => p.category).filter(Boolean));
+      const selected = /* @__PURE__ */ new Set();
+      const matchingCategoryProducts = (allProducts || []).filter(
+        (p) => !viewedIds.has(p.id) && viewedCategories.has(p.category)
+      );
+      for (const p of matchingCategoryProducts) {
+        if (selected.size >= 4) break;
+        selected.add(p.id);
+      }
+      if (selected.size < 4) {
+        for (const p of allProducts || []) {
+          if (selected.size >= 4) break;
+          if (!viewedIds.has(p.id)) {
+            selected.add(p.id);
+          }
+        }
+      }
+      if (selected.size < 4) {
+        for (const p of allProducts || []) {
+          if (selected.size >= 4) break;
+          selected.add(p.id);
+        }
+      }
+      res.json({ result: Array.from(selected) });
     }
   });
   app.post("/api/gemini/chat", async (req, res) => {
+    const { message, products, history } = req.body;
     try {
-      const { message, products, history } = req.body;
       const productContext = (products || []).map((p) => `${p.name} (${p.category}): ${p.description} - Price: ${p.price}`).join("\n");
       const formattedHistory = (history || []).map((h) => ({
         role: h.role === "user" ? "user" : "model",
@@ -1017,16 +1041,51 @@ async function startServer() {
       const response = await chat.sendMessage({ message });
       res.json({ result: response.text || "\u0639\u0630\u0631\u0627\u064B\u060C \u0644\u0645 \u0623\u062A\u0645\u0643\u0646 \u0645\u0646 \u0645\u0639\u0627\u0644\u062C\u0629 \u0647\u0630\u0627 \u0627\u0644\u0637\u0644\u0628." });
     } catch (error) {
-      console.error("Server AI Chat Error:", error);
+      console.warn("Server AI Chat failed, using smart helper response fallback:", error.message || error);
+      const msgLower = (message || "").toLowerCase();
+      let reply = "";
+      if (msgLower.includes("\u0645\u0631\u062D\u0628\u0627") || msgLower.includes("\u0623\u0647\u0644\u0627\u064B") || msgLower.includes("\u0627\u0644\u0633\u0644\u0627\u0645") || msgLower.includes("hello") || msgLower.includes("hi")) {
+        reply = "\u0623\u0647\u0644\u0627\u064B \u0628\u0643 \u0641\u064A \u0645\u062A\u062C\u0631 **BeePharma & More** \u0627\u0644\u0631\u0627\u0642\u064D! \u{1F338} \u0643\u064A\u0641 \u064A\u0645\u0643\u0646\u0646\u064A \u0645\u0633\u0627\u0639\u062F\u062A\u0643 \u0627\u0644\u064A\u0648\u0645 \u0641\u064A \u062A\u0635\u0641\u062D \u0645\u0646\u062A\u062C\u0627\u062A\u0646\u0627 \u0627\u0644\u0637\u0628\u064A\u0629 \u0648\u0627\u0644\u0639\u0646\u0627\u064A\u0629 \u0627\u0644\u0641\u0627\u0626\u0642\u0629\u061F";
+      } else if (msgLower.includes("\u0645\u0646\u062A\u062C") || msgLower.includes("\u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A") || msgLower.includes("\u0639\u0631\u0636")) {
+        const sampleProducts = (products || []).slice(0, 3).map((p) => `- **${p.name}** (${p.category}): \u0628\u0633\u0639\u0631 ${p.price} \u0631.\u0633`).join("\n");
+        reply = `\u0644\u062F\u064A\u0646\u0627 \u062A\u0634\u0643\u064A\u0644\u0629 \u0631\u0627\u0626\u0639\u0629 \u0645\u0646 \u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A \u0627\u0644\u0641\u0627\u062E\u0631\u0629! \u0625\u0644\u064A\u0643 \u0628\u0639\u0636 \u0645\u0646\u0647\u0627:
+${sampleProducts || "\u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A \u0642\u064A\u062F \u0627\u0644\u062A\u062D\u0645\u064A\u0644 \u062D\u0627\u0644\u064A\u0627\u064B!"}
+
+\u0647\u0644 \u062A\u0648\u062F \u0627\u0644\u0627\u0633\u062A\u0641\u0633\u0627\u0631 \u0639\u0646 \u0645\u0646\u062A\u062C \u0645\u0639\u064A\u0646\u061F`;
+      } else if (msgLower.includes("\u0633\u0639\u0631") || msgLower.includes("\u0628\u0643\u0645") || msgLower.includes("\u0643\u0645")) {
+        const match = (products || []).find((p) => msgLower.includes(p.name.toLowerCase()));
+        if (match) {
+          reply = `\u0628\u0627\u0644\u062A\u0623\u0643\u064A\u062F! \u0645\u0646\u062A\u062C **${match.name}** \u0645\u062A\u0648\u0641\u0631 \u0628\u0633\u0639\u0631 **${match.price} \u0631.\u0633**.
+
+\u0648\u0635\u0641 \u0627\u0644\u0645\u0646\u062A\u062C: ${match.description || "\u0644\u0627 \u064A\u0648\u062C\u062F \u0648\u0635\u0641 \u0645\u062A\u0648\u0641\u0631"}. \u0647\u0644 \u062A\u0631\u063A\u0628 \u0641\u064A \u0625\u0636\u0627\u0641\u062A\u0647 \u0625\u0644\u0649 \u0633\u0644\u062A\u0643\u061F`;
+        } else {
+          reply = "\u062A\u062A\u0641\u0627\u0648\u062A \u0623\u0633\u0639\u0627\u0631 \u0645\u0646\u062A\u062C\u0627\u062A\u0646\u0627 \u0627\u0644\u0641\u0627\u062E\u0631\u0629 \u0644\u062A\u0646\u0627\u0633\u0628 \u0627\u0644\u062C\u0645\u064A\u0639 \u0648\u062A\u0628\u062F\u0623 \u0645\u0646 \u0623\u0633\u0639\u0627\u0631 \u0645\u0646\u0627\u0641\u0633\u0629 \u062C\u062F\u0627\u064B! \u064A\u0645\u0643\u0646\u0643 \u0627\u0644\u0636\u063A\u0637 \u0639\u0644\u0649 \u0623\u064A \u0645\u0646\u062A\u062C \u0644\u0645\u0639\u0631\u0641\u0629 \u062A\u0641\u0627\u0635\u064A\u0644\u0647 \u0648\u0633\u0639\u0631\u0647 \u0628\u062F\u0642\u0629. \u0647\u0644 \u0647\u0646\u0627\u0643 \u0645\u0646\u062A\u062C \u0645\u0639\u064A\u0646 \u062A\u0628\u062D\u062B \u0639\u0646 \u0633\u0639\u0631\u0647\u061F";
+        }
+      } else if (msgLower.includes("\u062A\u0648\u0635\u064A\u0629") || msgLower.includes("\u0623\u0641\u0636\u0644") || msgLower.includes("\u0631\u0634\u062D")) {
+        const topProduct = (products || [])[0];
+        if (topProduct) {
+          reply = `\u0623\u0631\u0634\u062F\u0643 \u0628\u0634\u062F\u0629 \u0644\u062A\u062C\u0631\u0628\u0629 \u0645\u0646\u062A\u062C\u0646\u0627 \u0627\u0644\u0623\u0643\u062B\u0631 \u0637\u0644\u0628\u0627\u064B: **${topProduct.name}** (${topProduct.category}) \u0628\u0633\u0639\u0631 **${topProduct.price} \u0631.\u0633**!
+
+\u0648\u0635\u0641\u0647: ${topProduct.description}
+
+\u0647\u0644 \u062A\u0641\u0636\u0644 \u0645\u0646\u062A\u062C\u0627\u062A \u0645\u0646 \u062A\u0635\u0646\u064A\u0641 \u0645\u0639\u064A\u0646 \u0643\u0627\u0644\u062C\u0645\u0627\u0644 \u0623\u0648 \u0627\u0644\u0641\u064A\u062A\u0627\u0645\u064A\u0646\u0627\u062A\u061F`;
+        } else {
+          reply = "\u064A\u0633\u0639\u062F\u0646\u064A \u062A\u0631\u0634\u064A\u062D \u0623\u0641\u0636\u0644 \u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A \u0644\u0643! \u0645\u0627 \u0647\u0648 \u0646\u0648\u0639 \u0627\u0644\u0631\u0639\u0627\u064A\u0629 \u0623\u0648 \u0627\u0644\u062A\u0635\u0646\u064A\u0641 \u0627\u0644\u0630\u064A \u062A\u0628\u062D\u062B \u0639\u0646\u0647 \u062D\u0627\u0644\u064A\u0627\u064B (\u0641\u064A\u062A\u0627\u0645\u064A\u0646\u0627\u062A\u060C \u0645\u0633\u062A\u062D\u0636\u0631\u0627\u062A \u062A\u062C\u0645\u064A\u0644\u060C \u0639\u0646\u0627\u064A\u0629 \u0628\u0627\u0644\u0628\u0634\u0631\u0629)\u061F";
+        }
+      } else {
+        reply = "\u0634\u0643\u0631\u0627\u064B \u0644\u0631\u0633\u0627\u0644\u062A\u0643 \u0627\u0644\u0644\u0637\u064A\u0641\u0629! \u{1F31F} \u0644\u0645\u0633\u0627\u0639\u062F\u062A\u0643 \u0628\u0623\u0641\u0636\u0644 \u0634\u0643\u0644\u060C \u064A\u0645\u0643\u0646\u0643 \u062A\u0635\u0641\u062D \u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u0645\u062A\u062C\u0631 \u0627\u0644\u0645\u062E\u062A\u0644\u0641\u0629 \u0645\u062B\u0644 \u0627\u0644\u0641\u064A\u062A\u0627\u0645\u064A\u0646\u0627\u062A \u0648\u0645\u0633\u062A\u062D\u0636\u0631\u0627\u062A \u0627\u0644\u062A\u062C\u0645\u064A\u0644\u060C \u0623\u0648 \u0625\u062E\u0628\u0627\u0631\u064A \u0628\u0627\u0633\u0645 \u0627\u0644\u0645\u0646\u062A\u062C \u0627\u0644\u0630\u064A \u062A\u0628\u062D\u062B \u0639\u0646\u0647 \u0648\u0633\u0623\u0639\u0637\u064A\u0643 \u0643\u0627\u0645\u0644 \u062A\u0641\u0627\u0635\u064A\u0644\u0647 \u0648\u0623\u0633\u0639\u0627\u0631\u0647 \u0641\u0648\u0631\u0627\u064B!";
+      }
       const errStr = String(error).toLowerCase();
-      const isLeakedKey = errStr.includes("leaked") || errStr.includes("leak") || errStr.includes("403") || errStr.includes("permission_denied") || errStr.includes("key") || errStr.includes("api_key_invalid") || errStr.includes("not valid");
-      const errorMessage = isLeakedKey ? "\u26A0\uFE0F \u062A\u0645 \u0627\u0643\u062A\u0634\u0627\u0641 \u0645\u0634\u0643\u0644\u0629 \u0641\u064A \u0635\u0644\u0627\u062D\u064A\u0629 \u0645\u0641\u062A\u0627\u062D \u0627\u0644\u0648\u0635\u0648\u0644 (API Key) \u0644\u0644\u0630\u0643\u0627\u0621 \u0627\u0644\u0627\u0635\u0637\u0646\u0627\u0639\u064A. \u0644\u062D\u0644\u0647\u0627 \u0641\u0648\u0631\u0627\u064B\u060C \u064A\u0631\u062C\u0649 \u0625\u062F\u062E\u0627\u0644 \u0645\u0641\u062A\u0627\u062D \u0645\u062C\u0627\u0646\u064A \u062E\u0627\u0635 \u0628\u0643 \u0645\u0646 Google AI Studio \u0648\u0648\u0636\u0639\u0647 \u0641\u064A \u0642\u0627\u0626\u0645\u0629 'Settings' (\u0627\u0644\u0625\u0639\u062F\u0627\u062F\u0627\u062A) \u0641\u064A \u0627\u0644\u0632\u0627\u0648\u064A\u0629 \u0627\u0644\u0639\u0644\u0648\u064A\u0629 \u0627\u0644\u064A\u0645\u0646\u0649 \u0644\u0644\u0645\u0634\u0631\u0648\u0639 \u062A\u062D\u062A \u0627\u0633\u0645 \u0627\u0644\u0628\u064A\u0626\u0629 GEMINI_API_KEY \u0644\u062A\u0641\u0639\u064A\u0644 \u0627\u0644\u0645\u0633\u0627\u0639\u062F \u0627\u0644\u0630\u0643\u064A \u0641\u0648\u0631\u0627\u064B \u0648\u0628\u062F\u0648\u0646 \u0623\u064A \u0642\u064A\u0648\u062F!" : "\u0623\u0648\u0627\u062C\u0647 \u062D\u0627\u0644\u064A\u0627\u064B \u0635\u0639\u0648\u0628\u0629 \u0641\u064A \u0627\u0644\u0627\u062A\u0635\u0627\u0644 \u0628\u062E\u0627\u062F\u0645\u064A \u0628\u0633\u0628\u0628 \u0636\u063A\u0637 \u0627\u0644\u0637\u0644\u0628\u0627\u062A. \u064A\u0631\u062C\u0649 \u0627\u0644\u0645\u062D\u0627\u0648\u0644\u0629 \u0628\u0639\u062F \u0642\u0644\u064A\u0644!";
-      res.status(500).json({ error: error.message || "AI Chat Error", result: errorMessage });
+      const isKeyError = errStr.includes("leaked") || errStr.includes("leak") || errStr.includes("403") || errStr.includes("permission_denied") || errStr.includes("key") || errStr.includes("api_key_invalid") || errStr.includes("not valid");
+      if (isKeyError) {
+        reply += "\n\n*(\u0645\u0644\u0627\u062D\u0638\u0629: \u064A\u0645\u0643\u0646\u0643 \u0648\u0636\u0639 \u0645\u0641\u062A\u0627\u062D API Key \u0627\u0644\u062E\u0627\u0635 \u0628\u0643 \u0641\u064A Settings \u0628\u0627\u0633\u0645 GEMINI_API_KEY \u0644\u0644\u062D\u0635\u0648\u0644 \u0639\u0644\u0649 \u062A\u062C\u0631\u0628\u0629 \u0630\u0643\u0627\u0621 \u0627\u0635\u0637\u0646\u0627\u0639\u064A \u062A\u0641\u0627\u0639\u0644\u064A\u0629 \u0643\u0627\u0645\u0644\u0629)*";
+      }
+      res.json({ result: reply });
     }
   });
   app.post("/api/gemini/search", async (req, res) => {
+    const { query, products } = req.body;
     try {
-      const { query, products } = req.body;
       const productList = (products || []).map((p) => ({ id: p.id, name: p.name, description: p.description }));
       const ai = getGeminiClient();
       const response = await ai.models.generateContent({
@@ -1045,13 +1104,34 @@ async function startServer() {
       });
       res.json({ result: JSON.parse(response.text || "[]") });
     } catch (error) {
-      console.error("Server Smart Search Error:", error);
-      res.status(500).json({ error: error.message || "AI Search Error", result: [] });
+      console.warn("Server Smart Search failed, using word-match programmatic fallback:", error.message || error);
+      if (!query) {
+        return res.json({ result: [] });
+      }
+      const queryLower = query.toLowerCase().trim();
+      const queryWords = queryLower.split(/\s+/).filter((w) => w.length > 1);
+      const scored = (products || []).map((p) => {
+        let score = 0;
+        const nameLower = (p.name || "").toLowerCase();
+        const descLower = (p.description || "").toLowerCase();
+        const catLower = (p.category || "").toLowerCase();
+        if (nameLower.includes(queryLower)) score += 12;
+        if (descLower.includes(queryLower)) score += 6;
+        if (catLower.includes(queryLower)) score += 8;
+        for (const word of queryWords) {
+          if (nameLower.includes(word)) score += 4;
+          if (descLower.includes(word)) score += 2;
+          if (catLower.includes(word)) score += 3;
+        }
+        return { id: p.id, score };
+      });
+      const filteredAndSortedIds = scored.filter((item) => item.score > 0).sort((a, b) => b.score - a.score).map((item) => item.id);
+      res.json({ result: filteredAndSortedIds });
     }
   });
   app.post("/api/gemini/inventory", async (req, res) => {
+    const { products, orders } = req.body;
     try {
-      const { products, orders } = req.body;
       const inventoryData = (products || []).map((p) => ({
         id: p.id,
         name: p.name,
@@ -1085,8 +1165,33 @@ async function startServer() {
       });
       res.json({ result: JSON.parse(response.text || "[]") });
     } catch (error) {
-      console.error("Server Inventory Prediction Error:", error);
-      res.status(500).json({ error: error.message || "AI Inventory Error", result: [] });
+      console.warn("Server Inventory Prediction failed, using programmatic fallback:", error.message || error);
+      const list = (products || []).map((p) => {
+        const salesCount = (orders || []).reduce((acc, o) => {
+          const items = o.items || [];
+          const productItems = items.filter((i) => i.productId === p.id);
+          return acc + productItems.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        }, 0);
+        let prediction = "\u0645\u0633\u062A\u0642\u0631 (\u0645\u062E\u0632\u0648\u0646 \u0643\u0627\u0641\u064D)";
+        let reason = "\u0627\u0644\u0645\u062E\u0632\u0648\u0646 \u0627\u0644\u062D\u0627\u0644\u064A \u064A\u063A\u0637\u064A \u0627\u0644\u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0645\u062A\u0648\u0642\u0639\u0629 \u0628\u0646\u0627\u0621\u064B \u0639\u0644\u0649 \u0645\u0639\u062F\u0644 \u0627\u0644\u0645\u0628\u064A\u0639\u0627\u062A \u0627\u0644\u062D\u0627\u0644\u064A\u0629 \u0644\u0644\u0642\u0633\u0645.";
+        if (p.quantity === 0) {
+          prediction = "\u0646\u0641\u062F \u0645\u0646 \u0627\u0644\u0645\u062E\u0632\u0648\u0646 (\u0628\u062D\u0627\u062C\u0629 \u0644\u0634\u062D\u0646)";
+          reason = "\u0627\u0644\u0645\u0646\u062A\u062C \u0646\u0641\u062F \u0628\u0627\u0644\u0643\u0627\u0645\u0644 \u0645\u0646 \u0627\u0644\u0645\u062A\u062C\u0631 \u0645\u0639 \u0627\u0633\u062A\u0645\u0631\u0627\u0631 \u0637\u0644\u0628\u0627\u062A \u0627\u0644\u0628\u062D\u062B \u0648\u0627\u0644\u0627\u0647\u062A\u0645\u0627\u0645 \u0645\u0646 \u0627\u0644\u0632\u0648\u0627\u0631.";
+        } else if (p.quantity < 5) {
+          prediction = "\u0628\u062D\u0627\u062C\u0629 \u0644\u0625\u0639\u0627\u062F\u0629 \u0627\u0644\u0637\u0644\u0628 \u0641\u0648\u0631\u0627\u064B";
+          reason = `\u0627\u0644\u0645\u062E\u0632\u0648\u0646 \u062D\u0631\u062C \u062C\u062F\u0627\u064B (${p.quantity} \u0642\u0637\u0639 \u0645\u062A\u0628\u0642\u064A\u0629) \u0645\u0639 \u0645\u0628\u064A\u0639\u0627\u062A \u0628\u0644\u063A\u062A ${salesCount} \u0642\u0637\u0639 \u0645\u0624\u062E\u0631\u0627\u064B.`;
+        } else if (p.quantity < 15 && salesCount > 2) {
+          prediction = "\u062A\u0648\u0635\u064A\u0629 \u0628\u0625\u0639\u0627\u062F\u0629 \u0627\u0644\u0637\u0644\u0628 \u0642\u0631\u064A\u0628\u0627\u064B";
+          reason = `\u0645\u0639\u062F\u0644 \u0633\u062D\u0628 \u0627\u0644\u0645\u0646\u062A\u062C \u0645\u0631\u062A\u0641\u0639 \u0645\u0642\u0627\u0631\u0646\u0629 \u0628\u0627\u0644\u0643\u0645\u064A\u0629 \u0627\u0644\u0645\u062A\u0648\u0641\u0631\u0629 \u062D\u0627\u0644\u064A\u0627\u064B \u0641\u064A \u0627\u0644\u0645\u0633\u062A\u0648\u062F\u0639.`;
+        }
+        return {
+          id: p.id,
+          name: p.name,
+          prediction,
+          reason
+        };
+      });
+      res.json({ result: list });
     }
   });
   wss.on("connection", (ws) => {
