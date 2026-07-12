@@ -813,12 +813,28 @@ function App() {
         const res = await fetch("/api/products");
         if (res.ok) {
           const data = await res.json();
-          isRemoteUpdate.current = true;
-          setProducts(data);
-          hasLoadedFromServer.current = true;
-          setTimeout(() => {
-            isRemoteUpdate.current = false;
-          }, 100);
+          if (data && data.hasStored) {
+            isRemoteUpdate.current = true;
+            setProducts(data.products);
+            hasLoadedFromServer.current = true;
+            setTimeout(() => {
+              isRemoteUpdate.current = false;
+            }, 100);
+          } else {
+            hasLoadedFromServer.current = true;
+            // If server has no stored products yet, save our current client-side products to server
+            try {
+              await fetch("/api/products", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(products)
+              });
+            } catch (err) {
+              console.error("Failed to save client products to server initially:", err);
+            }
+          }
         }
       } catch (err) {
         console.error("Failed to load products from server:", err);
@@ -826,6 +842,7 @@ function App() {
       }
     };
     loadProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const broadcastUpdate = useCallback((type: string, data: any) => {
