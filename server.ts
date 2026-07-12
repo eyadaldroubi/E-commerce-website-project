@@ -102,8 +102,8 @@ async function startServer() {
 
   // API route: Recommend
   app.post("/api/gemini/recommend", async (req, res) => {
+    const { viewedProducts, allProducts, purchaseHistory } = req.body;
     try {
-      const { viewedProducts, allProducts, purchaseHistory } = req.body;
       const viewedNames = (viewedProducts || []).map((p: any) => p.name).join(", ");
       const purchasedNames = (purchaseHistory || []).flatMap((o: any) => (o.items || []).map((i: any) => i.name)).join(", ");
       const availableProducts = (allProducts || []).map((p: any) => ({ id: p.id, name: p.name, category: p.category }));
@@ -128,15 +128,49 @@ async function startServer() {
 
       res.json({ result: JSON.parse(response.text || "[]") });
     } catch (error: any) {
-      console.error("Server AI Recommendation Error:", error);
-      res.status(500).json({ error: error.message || "AI Error", result: [] });
+      console.warn("Server AI Recommendation failed, using programmatic fallback:", error.message || error);
+      
+      // Smart programmatic recommendation fallback
+      const viewedIds = new Set((viewedProducts || []).map((p: any) => p.id));
+      const viewedCategories = new Set((viewedProducts || []).map((p: any) => p.category).filter(Boolean));
+      
+      const selected = new Set<string>();
+      
+      // 1. Same category products
+      const matchingCategoryProducts = (allProducts || []).filter((p: any) => 
+        !viewedIds.has(p.id) && viewedCategories.has(p.category)
+      );
+      for (const p of matchingCategoryProducts) {
+        if (selected.size >= 4) break;
+        selected.add(p.id);
+      }
+      
+      // 2. Other products
+      if (selected.size < 4) {
+        for (const p of (allProducts || [])) {
+          if (selected.size >= 4) break;
+          if (!viewedIds.has(p.id)) {
+            selected.add(p.id);
+          }
+        }
+      }
+      
+      // 3. Absolute fallback
+      if (selected.size < 4) {
+        for (const p of (allProducts || [])) {
+          if (selected.size >= 4) break;
+          selected.add(p.id);
+        }
+      }
+      
+      res.json({ result: Array.from(selected) });
     }
   });
 
   // API route: Chat
   app.post("/api/gemini/chat", async (req, res) => {
+    const { message, products, history } = req.body;
     try {
-      const { message, products, history } = req.body;
       const productContext = (products || []).map((p: any) => `${p.name} (${p.category}): ${p.description} - Price: ${p.price}`).join("\n");
 
       // Format history appropriately for newer chats.sendMessage API
@@ -171,20 +205,52 @@ async function startServer() {
       const response = await chat.sendMessage({ message });
       res.json({ result: response.text || "عذراً، لم أتمكن من معالجة هذا الطلب." });
     } catch (error: any) {
-      console.error("Server AI Chat Error:", error);
+      console.warn("Server AI Chat failed, using smart helper response fallback:", error.message || error);
+      
+      const msgLower = (message || "").toLowerCase();
+      let reply = "";
+
+      // Rule-based smart Arabic shopping helper assistant
+      if (msgLower.includes("مرحبا") || msgLower.includes("أهلاً") || msgLower.includes("السلام") || msgLower.includes("hello") || msgLower.includes("hi")) {
+        reply = "أهلاً بك في متجر **BeePharma & More** الراقٍ! 🌸 كيف يمكنني مساعدتك اليوم في تصفح منتجاتنا الطبية والعناية الفائقة؟";
+      } else if (msgLower.includes("منتج") || msgLower.includes("المنتجات") || msgLower.includes("عرض")) {
+        const sampleProducts = (products || []).slice(0, 3).map((p: any) => `- **${p.name}** (${p.category}): بسعر ${p.price} ر.س`).join("\n");
+        reply = `لدينا تشكيلة رائعة من المنتجات الفاخرة! إليك بعض منها:\n${sampleProducts || "المنتجات قيد التحميل حالياً!"}\n\nهل تود الاستفسار عن منتج معين؟`;
+      } else if (msgLower.includes("سعر") || msgLower.includes("بكم") || msgLower.includes("كم")) {
+        // Find matching product
+        const match = (products || []).find((p: any) => msgLower.includes(p.name.toLowerCase()));
+        if (match) {
+          reply = `بالتأكيد! منتج **${match.name}** متوفر بسعر **${match.price} ر.س**.\n\nوصف المنتج: ${match.description || "لا يوجد وصف متوفر"}. هل ترغب في إضافته إلى سلتك؟`;
+        } else {
+          reply = "تتفاوت أسعار منتجاتنا الفاخرة لتناسب الجميع وتبدأ من أسعار منافسة جداً! يمكنك الضغط على أي منتج لمعرفة تفاصيله وسعره بدقة. هل هناك منتج معين تبحث عن سعره؟";
+        }
+      } else if (msgLower.includes("توصية") || msgLower.includes("أفضل") || msgLower.includes("رشح")) {
+        const topProduct = (products || [])[0];
+        if (topProduct) {
+          reply = `أرشدك بشدة لتجربة منتجنا الأكثر طلباً: **${topProduct.name}** (${topProduct.category}) بسعر **${topProduct.price} ر.س**!\n\nوصفه: ${topProduct.description}\n\nهل تفضل منتجات من تصنيف معين كالجمال أو الفيتامينات؟`;
+        } else {
+          reply = "يسعدني ترشيح أفضل المنتجات لك! ما هو نوع الرعاية أو التصنيف الذي تبحث عنه حالياً (فيتامينات، مستحضرات تجميل، عناية بالبشرة)؟";
+        }
+      } else {
+        // Generic smart fallback
+        reply = "شكراً لرسالتك اللطيفة! 🌟 لمساعدتك بأفضل شكل، يمكنك تصفح أقسام المتجر المختلفة مثل الفيتامينات ومستحضرات التجميل، أو إخباري باسم المنتج الذي تبحث عنه وسأعطيك كامل تفاصيله وأسعاره فوراً!";
+      }
+
       const errStr = String(error).toLowerCase();
-      const isLeakedKey = errStr.includes("leaked") || errStr.includes("leak") || errStr.includes("403") || errStr.includes("permission_denied") || errStr.includes("key") || errStr.includes("api_key_invalid") || errStr.includes("not valid");
-      const errorMessage = isLeakedKey 
-        ? "⚠️ تم اكتشاف مشكلة في صلاحية مفتاح الوصول (API Key) للذكاء الاصطناعي. لحلها فوراً، يرجى إدخال مفتاح مجاني خاص بك من Google AI Studio ووضعه في قائمة 'Settings' (الإعدادات) في الزاوية العلوية اليمنى للمشروع تحت اسم البيئة GEMINI_API_KEY لتفعيل المساعد الذكي فوراً وبدون أي قيود!"
-        : "أواجه حالياً صعوبة في الاتصال بخادمي بسبب ضغط الطلبات. يرجى المحاولة بعد قليل!";
-      res.status(500).json({ error: error.message || "AI Chat Error", result: errorMessage });
+      const isKeyError = errStr.includes("leaked") || errStr.includes("leak") || errStr.includes("403") || errStr.includes("permission_denied") || errStr.includes("key") || errStr.includes("api_key_invalid") || errStr.includes("not valid");
+      
+      if (isKeyError) {
+        reply += "\n\n*(ملاحظة: يمكنك وضع مفتاح API Key الخاص بك في Settings باسم GEMINI_API_KEY للحصول على تجربة ذكاء اصطناعي تفاعلية كاملة)*";
+      }
+
+      res.json({ result: reply });
     }
   });
 
   // API route: Smart Search
   app.post("/api/gemini/search", async (req, res) => {
+    const { query, products } = req.body;
     try {
-      const { query, products } = req.body;
       const productList = (products || []).map((p: any) => ({ id: p.id, name: p.name, description: p.description }));
 
       const ai = getGeminiClient();
@@ -205,15 +271,46 @@ async function startServer() {
 
       res.json({ result: JSON.parse(response.text || "[]") });
     } catch (error: any) {
-      console.error("Server Smart Search Error:", error);
-      res.status(500).json({ error: error.message || "AI Search Error", result: [] });
+      console.warn("Server Smart Search failed, using word-match programmatic fallback:", error.message || error);
+      
+      if (!query) {
+        return res.json({ result: [] });
+      }
+
+      const queryLower = query.toLowerCase().trim();
+      const queryWords = queryLower.split(/\s+/).filter((w: string) => w.length > 1);
+      
+      const scored = (products || []).map((p: any) => {
+        let score = 0;
+        const nameLower = (p.name || "").toLowerCase();
+        const descLower = (p.description || "").toLowerCase();
+        const catLower = (p.category || "").toLowerCase();
+        
+        if (nameLower.includes(queryLower)) score += 12;
+        if (descLower.includes(queryLower)) score += 6;
+        if (catLower.includes(queryLower)) score += 8;
+        
+        for (const word of queryWords) {
+          if (nameLower.includes(word)) score += 4;
+          if (descLower.includes(word)) score += 2;
+          if (catLower.includes(word)) score += 3;
+        }
+        return { id: p.id, score };
+      });
+      
+      const filteredAndSortedIds = scored
+        .filter((item: any) => item.score > 0)
+        .sort((a: any, b: any) => b.score - a.score)
+        .map((item: any) => item.id);
+
+      res.json({ result: filteredAndSortedIds });
     }
   });
 
   // API route: Predict Inventory
   app.post("/api/gemini/inventory", async (req, res) => {
+    const { products, orders } = req.body;
     try {
-      const { products, orders } = req.body;
       const inventoryData = (products || []).map((p: any) => ({
         id: p.id,
         name: p.name,
@@ -249,8 +346,39 @@ async function startServer() {
 
       res.json({ result: JSON.parse(response.text || "[]") });
     } catch (error: any) {
-      console.error("Server Inventory Prediction Error:", error);
-      res.status(500).json({ error: error.message || "AI Inventory Error", result: [] });
+      console.warn("Server Inventory Prediction failed, using programmatic fallback:", error.message || error);
+      
+      // Smart inventory prediction calculations
+      const list = (products || []).map((p: any) => {
+        const salesCount = (orders || []).reduce((acc: number, o: any) => {
+          const items = o.items || [];
+          const productItems = items.filter((i: any) => i.productId === p.id);
+          return acc + productItems.reduce((sum: number, item: any) => sum + (item.quantity || 0), 0);
+        }, 0);
+        
+        let prediction = "مستقر (مخزون كافٍ)";
+        let reason = "المخزون الحالي يغطي الطلبات المتوقعة بناءً على معدل المبيعات الحالية للقسم.";
+        
+        if (p.quantity === 0) {
+          prediction = "نفد من المخزون (بحاجة لشحن)";
+          reason = "المنتج نفد بالكامل من المتجر مع استمرار طلبات البحث والاهتمام من الزوار.";
+        } else if (p.quantity < 5) {
+          prediction = "بحاجة لإعادة الطلب فوراً";
+          reason = `المخزون حرج جداً (${p.quantity} قطع متبقية) مع مبيعات بلغت ${salesCount} قطع مؤخراً.`;
+        } else if (p.quantity < 15 && salesCount > 2) {
+          prediction = "توصية بإعادة الطلب قريباً";
+          reason = `معدل سحب المنتج مرتفع مقارنة بالكمية المتوفرة حالياً في المستودع.`;
+        }
+        
+        return {
+          id: p.id,
+          name: p.name,
+          prediction,
+          reason
+        };
+      });
+
+      res.json({ result: list });
     }
   });
 

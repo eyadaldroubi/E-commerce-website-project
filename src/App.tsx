@@ -631,15 +631,7 @@ function App() {
     const saved = localStorage.getItem('shop_products');
     if (saved) {
       try {
-        const parsed = JSON.parse(saved) as Product[];
-        const parsedIds = new Set(parsed.map(p => p.id));
-        const missing = INITIAL_PRODUCTS.filter(p => !parsedIds.has(p.id));
-        if (missing.length > 0) {
-          const merged = [...parsed, ...missing];
-          safeLocalStorageSetItem('shop_products', JSON.stringify(merged));
-          return merged;
-        }
-        return parsed;
+        return JSON.parse(saved) as Product[];
       } catch (e) {
         return INITIAL_PRODUCTS;
       }
@@ -813,13 +805,30 @@ function App() {
         const res = await fetch("/api/products");
         if (res.ok) {
           const data = await res.json();
+          const hasLocalSaved = !!localStorage.getItem('shop_products');
+          
           if (data && data.hasStored) {
-            isRemoteUpdate.current = true;
-            setProducts(data.products);
-            hasLoadedFromServer.current = true;
-            setTimeout(() => {
-              isRemoteUpdate.current = false;
-            }, 100);
+            if (!hasLocalSaved) {
+              isRemoteUpdate.current = true;
+              setProducts(data.products);
+              hasLoadedFromServer.current = true;
+              setTimeout(() => {
+                isRemoteUpdate.current = false;
+              }, 100);
+            } else {
+              hasLoadedFromServer.current = true;
+              try {
+                await fetch("/api/products", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify(products)
+                });
+              } catch (err) {
+                console.error("Failed to sync client products to server:", err);
+              }
+            }
           } else {
             hasLoadedFromServer.current = true;
             // If server has no stored products yet, save our current client-side products to server
@@ -896,7 +905,7 @@ function App() {
   React.useEffect(() => {
     safeLocalStorageSetItem('shop_products', JSON.stringify(products));
 
-    if (hasLoadedFromServer.current) {
+    if (hasLoadedFromServer.current && !isRemoteUpdate.current) {
       const saveToServer = async () => {
         try {
           await fetch("/api/products", {
