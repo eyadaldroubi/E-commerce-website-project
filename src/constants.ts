@@ -51,7 +51,11 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const INITIAL_PRODUCTS: Product[] = [
+<<<<<<< HEAD
    {
+=======
+  {
+>>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
     id: 'mobiles-new-1',
     name: 'IPhone 16 PRO MAX',
     description:' . ',
@@ -2377,6 +2381,10 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.5,
     reviewsCount: 100
   },
+<<<<<<< HEAD
+=======
+         {
+>>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
     id: 'bee-shampoos-new-1',
     name: 'شامبو عسل السدر',
     description:' . ',
@@ -2568,7 +2576,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.4,
     reviewsCount: 120
   },
+<<<<<<< HEAD
            {
+=======
+             {
+>>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
     id: 'bee-natural_soap-new-1',
     name: 'صابون الغار',
     description:' . ',
@@ -3144,7 +3156,11 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.6,
     reviewsCount: 140
   },
+<<<<<<< HEAD
        {
+=======
+          {
+>>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
     id: 'womens_perfumes-new-1',
     name: 'عطر توم فورد بلاك أوركيد',
     description:' . ',
@@ -3155,6 +3171,381 @@ export const INITIAL_PRODUCTS: Product[] = [
     images: [],
     rating: 4.7,
     reviewsCount: 180
+<<<<<<< HEAD
+=======
+  },
+        {
+    id: 'womens_perfumes-new-2',
+    name: 'عطر جورجيو أرماني سي باسيوني',
+    description:' . ',
+    price: 200,
+    quantity: 45,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 140
+  },
+          {
+    id: 'womens_perfumes-new-3',
+    name: 'عطر كارولينا هيريرا جود جيرل',
+    description:' . ',
+    price: 420,
+    quantity: 35,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 165
+  },
+          {
+    id: 'womens_perfumes-new-4',
+    name: 'عطر بايسون روج',
+    description:' . ',
+    price: 370,
+    quantity: 65,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 190
+  },
+          {
+    id: 'womens_perfumes-new-5',
+    name: 'عطر برادا بارادوكس',
+    description:' . ',
+    price: 500,
+    quantity: 35,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.9,
+    reviewsCount: 175
+  },
+          {
+    id: 'womens_perfumes-new-6',
+    name: 'عطر إيف سان لوران ليبر إنتنس',
+    description:' . ',
+    price: 460,
+    quantity: 75,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 185
+  },
+          {
+    id: 'womens_perfumes-new-7',
+    name: 'عطر ديور جادور',
+    description:' . ',
+    price: 390,
+    quantity: 35,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 170
+  },
+          {
+    id: 'womens_perfumes-new-8',
+    name: 'عطر شانيل كوكو مدموزيل',
+    description:' . ',
+    price: 450,
+    quantity: 65,
+    category: 'womens_perfumes',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 190
+  },
+       {
+    id: 'mens_care-new-1',
+    name: 'زيوت وبلسم اللحية',
+    description:' . ',
+    price: 40,
+    quantity: 75,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.1,
+    reviewsCount: 60
+  },
+       {
+    id: 'mens_care-new-2',
+    name: 'غسول للجسم',
+    description:' . ',
+    price: 13,
+    quantity: 35,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.0,
+    reviewsCount: 10
+  },
+        {
+    id: 'mens_care-new-3',
+    name: 'رغوة حلاقة وغسول عناية للرجال',
+    description:' . ',
+    price: 4,
+    quantity: 75,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.1,
+    reviewsCount: 60
+  },
+        {
+    id: 'mens_care-new-4',
+    name: 'شفرات حلافة من شركة Gillette',
+    description:' . ',
+    price: 17,
+    quantity: 35,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 30
+  },
+        {
+    id: 'mens_care-new-4',
+    name: 'كريم لتصفيف الشعر',
+    description:' . ',
+    price: 23,
+    quantity: 45,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.5,
+    reviewsCount: 40
+  },
+        {
+    id: 'mens_care-new-6',
+    name: 'زيت إنبات اللحية',
+    description:' . ',
+    price: 19,
+    quantity: 65,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.4,
+    reviewsCount: 20
+  },
+        {
+    id: 'mens_care-new-7',
+    name: 'لوشن ما بعد الحلاقة',
+    description:' . ',
+    price: 4.99,
+    quantity: 65,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.5,
+    reviewsCount: 20
+  },
+        {
+    id: 'mens_care-new-8',
+    name: 'كريم الحلاقة',
+    description:' . ',
+    price: 10,
+    quantity: 85,
+    category: 'mens_care',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.2,
+    reviewsCount: 30
+  },
+      {
+    id: 'seasonal_products-new-1',
+    name: 'واقي شمس خفيف',
+    description:' . ',
+    price: 20,
+    quantity: 85,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.5,
+    reviewsCount: 90
+  },
+      {
+    id: 'seasonal_products-new-2',
+    name: 'مقشر لطيف',
+    description:' . ',
+    price: 20,
+    quantity: 45,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 70
+  },
+        {
+    id: 'seasonal_products-new-3',
+    name: 'زيت الوجه المغذي',
+    description:' . ',
+    price: 29,
+    quantity: 55,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 70
+  },
+        {
+    id: 'seasonal_products-new-4',
+    name: 'مرطب كريمي',
+    description:' . ',
+    price: 19,
+    quantity: 25,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 40
+  },
+        {
+    id: 'seasonal_products-new-5',
+    name: 'منظف لطيف',
+    description:' . ',
+    price: 12,
+    quantity: 65,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.4,
+    reviewsCount: 80
+  },
+        {
+    id: 'seasonal_products-new-6',
+    name: 'بخاخ رذاذ الوجه',
+    description:' . ',
+    price: 6,
+    quantity: 75,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 110
+  },
+        {
+    id: 'seasonal_products-new-7',
+    name: 'الجل المرطب المائي',
+    description:' . ',
+    price: 15,
+    quantity: 45,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 80
+  },
+        {
+    id: 'seasonal_products-new-8',
+    name: 'سيروم فيتامين سي',
+    description:' . ',
+    price: 16,
+    quantity: 35,
+    category: 'seasonal_products',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 70
+  },
+        {
+    id: 'beauty_devices-new-1',
+    name: 'جهاز إزالة الشعر بالليزر المنزلي',
+    description:' . ',
+    price: 50,
+    quantity: 35,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 100
+  },
+       {
+    id: 'beauty_devices-new-2',
+    name: 'جهاز تقشير الجلد بالكريستال',
+    description:' . ',
+    price: 60,
+    quantity: 25,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.4,
+    reviewsCount: 130
+  },
+       {
+    id: 'beauty_devices-new-3',
+    name: 'جهاز بخار الوجه الأيوني',
+    description:' . ',
+    price: 70,
+    quantity: 45,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 140
+  },
+       {
+    id: 'beauty_devices-new-4',
+    name: 'جهاز تنظيف الوجه السيليكوني',
+    description:' . ',
+    price: 80,
+    quantity: 25,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 150
+  },
+       {
+    id: 'beauty_devices-new-5',
+    name: 'جهاز تدليك وشد الوجه بتقنية الضوء',
+    description:' . ',
+    price: 73,
+    quantity: 55,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 120
+  },
+       {
+    id: 'beauty_devices-new-6',
+    name: 'جهاز تنظيف البشرة العميق',
+    description:' . ',
+    price: 85,
+    quantity: 65,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 110
+  },
+       {
+    id: 'beauty_devices-new-7',
+    name: 'جهاز الهايفو',
+    description:' . ',
+    price: 75,
+    quantity: 65,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 130
+  },
+       {
+    id: 'beauty_devices-new-8',
+    name: 'جهاز شد الوجه بالترددات الراديوية',
+    description:' . ',
+    price: 45,
+    quantity: 45,
+    category: 'beauty_devices',
+    image: 'https://picsum.photos/seed/watch/400/400',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 120
+>>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
   },
         {
     id: 'womens_perfumes-new-2',
@@ -3560,7 +3951,10 @@ export const MOCK_ORDERS: Order[] = [
     status: 'processing',
     date: '2026-02-10'
   },
+<<<<<<< HEAD
 
+=======
+>>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
 ];
 
 export const MOCK_VENDORS: Vendor[] = [
