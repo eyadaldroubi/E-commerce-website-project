@@ -39,7 +39,7 @@ var INITIAL_PRODUCTS = [
     price: 1200,
     quantity: 45,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "C:UsersG-PCDesktop\u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A\u0627\u062A\u0645\u0648\u0628\u0627\u064A\u0644\u0627\u062Aa",
     images: [],
     rating: 4.8,
     reviewsCount: 124
