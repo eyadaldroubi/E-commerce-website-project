@@ -917,7 +917,7 @@ export const INITIAL_PRODUCTS: Product[] = [
   },
      {
     id: 'cameras-new-1',
-    name: 'Vlogging Cameras with 1'' CMOS & 4K/120fps Vlog Camera',
+    name: 'Vlogging Cameras with 1 CMOS & 4K/120fps Vlog Camera',
     description:' . ',
     price: 440,
     quantity: 55,
