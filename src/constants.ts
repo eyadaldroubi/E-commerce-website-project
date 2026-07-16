@@ -58,7 +58,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 1200,
     quantity: 45,
     category: 'mobiles',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'C:\Users\G-PC\Desktop\المنتجات\إلكترونيات\موبايلات\a',
     images: [],
     rating: 4.8,
     reviewsCount: 124
