@@ -628,11 +628,6 @@ export default function AppWrapper() {
 
 function App() {
   const [products, setProducts] = useState<Product[]>(() => {
-    const saved = localStorage.getItem('shop_products');
-    if (saved) {
-      try {
-        return JSON.parse(saved) as Product[];
-      } catch (e) {
         return INITIAL_PRODUCTS;
       }
     }
