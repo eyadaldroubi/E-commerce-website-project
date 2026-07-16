@@ -629,9 +629,7 @@ export default function AppWrapper() {
 function App() {
   const [products, setProducts] = useState<Product[]>(() => {
         return INITIAL_PRODUCTS;
-      }
-    }
-    return INITIAL_PRODUCTS;
+      
   });
   const [orders, setOrders] = useState<Order[]>(() => {
     const saved = localStorage.getItem('shop_orders');
