@@ -51,11 +51,7 @@ export const CATEGORIES: Category[] = [
 ];
 
 export const INITIAL_PRODUCTS: Product[] = [
-<<<<<<< HEAD
-   {
-=======
   {
->>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
     id: 'mobiles-new-1',
     name: 'IPhone 16 PRO MAX',
     description:' . ',
@@ -2381,10 +2377,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.5,
     reviewsCount: 100
   },
-<<<<<<< HEAD
-=======
-         {
->>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
+{
     id: 'bee-shampoos-new-1',
     name: 'شامبو عسل السدر',
     description:' . ',
@@ -2576,11 +2569,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.4,
     reviewsCount: 120
   },
-<<<<<<< HEAD
-           {
-=======
-             {
->>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
+{
     id: 'bee-natural_soap-new-1',
     name: 'صابون الغار',
     description:' . ',
@@ -3156,11 +3145,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.6,
     reviewsCount: 140
   },
-<<<<<<< HEAD
-       {
-=======
-          {
->>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
+{
     id: 'womens_perfumes-new-1',
     name: 'عطر توم فورد بلاك أوركيد',
     description:' . ',
@@ -3171,8 +3156,6 @@ export const INITIAL_PRODUCTS: Product[] = [
     images: [],
     rating: 4.7,
     reviewsCount: 180
-<<<<<<< HEAD
-=======
   },
         {
     id: 'womens_perfumes-new-2',
@@ -3545,7 +3528,6 @@ export const INITIAL_PRODUCTS: Product[] = [
     images: [],
     rating: 4.7,
     reviewsCount: 120
->>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
   },
         {
     id: 'womens_perfumes-new-2',
@@ -3951,14 +3933,8 @@ export const MOCK_ORDERS: Order[] = [
     status: 'processing',
     date: '2026-02-10'
   },
-<<<<<<< HEAD
-
-=======
->>>>>>> 4d4ab6d89ea8e2050eae685ecb1147a96721daf9
 ];
-
 export const MOCK_VENDORS: Vendor[] = [
-
   {
     id: 'VEN-1',
     name: 'يحيى شبلوط',
@@ -3995,7 +3971,6 @@ export const MOCK_VENDORS: Vendor[] = [
 ];
 
 export const MOCK_CUSTOMERS: Customer[] = [
- 
  {
     id: 'CUST-1',
     name: 'وسيم عبدربه',
