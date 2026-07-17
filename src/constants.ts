@@ -430,7 +430,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 200,
     quantity: 35,
     category: 'headphones',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/airpods-pro-3-hero-select-202509_FMT_WHH?wid=752&hei=636&fmt=jpeg&qlt=90&.v=1758077264181',
     images: [],
     rating: 4.5,
     reviewsCount: 100
