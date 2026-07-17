@@ -39,7 +39,7 @@ var INITIAL_PRODUCTS = [
     price: 1200,
     quantity: 45,
     category: "mobiles",
-    image: "C:UsersG-PCDesktop\u0627\u0644\u0645\u0646\u062A\u062C\u0627\u062A\u0625\u0644\u0643\u062A\u0631\u0648\u0646\u064A\u0627\u062A\u0645\u0648\u0628\u0627\u064A\u0644\u0627\u062Aa",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-ChfAIqaHXTrbNa5GUe12Y8K2h5PiBdGv8Qz4Ogl0c5aITnUQ1QsOlTI&s=10",
     images: [],
     rating: 4.8,
     reviewsCount: 124
@@ -51,7 +51,7 @@ var INITIAL_PRODUCTS = [
     price: 1200,
     quantity: 55,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://image.ceneostatic.pl/data/products/193589948/p-samsung-galaxy-s26-ultra-sm-s948-5g-12-512gb-czarny.jpg",
     images: [],
     rating: 4.4,
     reviewsCount: 110
@@ -63,7 +63,7 @@ var INITIAL_PRODUCTS = [
     price: 299,
     quantity: 65,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://m.media-amazon.com/images/I/51Zx+p5vIWL._AC_UF894,1000_QL80_.jpg",
     images: [],
     rating: 4.5,
     reviewsCount: 132
@@ -75,7 +75,7 @@ var INITIAL_PRODUCTS = [
     price: 1200,
     quantity: 65,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqH-S6bfZ0mD64bJfvFzlDHg-3xKGrMAteBkiToU43Mw&s=10",
     images: [],
     rating: 4.7,
     reviewsCount: 122
@@ -87,7 +87,7 @@ var INITIAL_PRODUCTS = [
     price: 1099,
     quantity: 75,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSt3vo4qoZOrVRYFxZWvQtsWG-YP7q2YtfK4l8kFrRdgw&s",
     images: [],
     rating: 4.9,
     reviewsCount: 155
@@ -99,7 +99,7 @@ var INITIAL_PRODUCTS = [
     price: 1099,
     quantity: 35,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://m.media-amazon.com/images/I/51wv+uPzIDL._AC_UF894,1000_QL80_.jpg",
     images: [],
     rating: 4.9,
     reviewsCount: 129
@@ -111,7 +111,7 @@ var INITIAL_PRODUCTS = [
     price: 980,
     quantity: 45,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://i.ebayimg.com/images/g/mgAAAeSw6WFo1zk-/s-l1200.jpg",
     images: [],
     rating: 4.7,
     reviewsCount: 154
@@ -123,7 +123,7 @@ var INITIAL_PRODUCTS = [
     price: 650,
     quantity: 75,
     category: "mobiles",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGs3tb2jUZCUzWxRM8oKEwe0KdEBwwdSPyXhN1cuD3hw&s=10",
     images: [],
     rating: 4.8,
     reviewsCount: 174
@@ -135,7 +135,7 @@ var INITIAL_PRODUCTS = [
     price: 1299,
     quantity: 45,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-0SX0vlLlNY1TT2qPHx1q72WbNiWxcXTRZmW3HhQm0WiHj6VYjmixKg58&s=10",
     images: [],
     rating: 4,
     reviewsCount: 174
@@ -147,7 +147,7 @@ var INITIAL_PRODUCTS = [
     price: 1500,
     quantity: 45,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5dm5eL-5hWEDn2oWEeyPOEl48QCtMOYO59eR2RfGjpA&s=10",
     images: [],
     rating: 4,
     reviewsCount: 174
@@ -159,7 +159,7 @@ var INITIAL_PRODUCTS = [
     price: 1199,
     quantity: 45,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNkvCBClPeilzzGbm3pP5mYw4mOWEx9km3FrNmsoqBaA&s=10",
     images: [],
     rating: 4,
     reviewsCount: 174
@@ -171,7 +171,7 @@ var INITIAL_PRODUCTS = [
     price: 1199,
     quantity: 65,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixdIU0alnf5GxcZZ8FMPDzq4HYxnRdzL8zr5IwvkoEQ&s=10",
     images: [],
     rating: 4.4,
     reviewsCount: 105
@@ -183,7 +183,7 @@ var INITIAL_PRODUCTS = [
     price: 2200,
     quantity: 35,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQC96Woc7M0ghgdHnm0MILSqXKz9-Fgx755ZPVyhgMxog&s=10",
     images: [],
     rating: 4.5,
     reviewsCount: 74
@@ -195,7 +195,7 @@ var INITIAL_PRODUCTS = [
     price: 1799,
     quantity: 65,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmWJAZGo8-qhrGZtiRkzOO0nSyrvVEETfVbAmFlwMQKg&s",
     images: [],
     rating: 4.6,
     reviewsCount: 155
@@ -207,7 +207,7 @@ var INITIAL_PRODUCTS = [
     price: 1399,
     quantity: 55,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThjZ4DBkYSY6ZTAsk582BOjU1ecQjuq4Vst3G95AjUBw&s",
     images: [],
     rating: 4.2,
     reviewsCount: 100
@@ -219,7 +219,7 @@ var INITIAL_PRODUCTS = [
     price: 700,
     quantity: 75,
     category: "tvs",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS85jeqap4nUCH98PyaELbvWA3Mp6LjMnItoJ8lf9dChQ&s=10",
     images: [],
     rating: 4.6,
     reviewsCount: 115
@@ -231,7 +231,7 @@ var INITIAL_PRODUCTS = [
     price: 700,
     quantity: 55,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5ZaF84xIy-z1OUXxxHQxIl5R9nOXE3GXlIE7cRAXoHg&s=10",
     images: [],
     rating: 4.8,
     reviewsCount: 145
@@ -243,7 +243,7 @@ var INITIAL_PRODUCTS = [
     price: 4600,
     quantity: 45,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://hp.widen.net/content/l44q8zxqf0/png/l44q8zxqf0.png?w=573&h=430&dpi=72&color=ffffff00",
     images: [],
     rating: 4.6,
     reviewsCount: 145
@@ -255,7 +255,7 @@ var INITIAL_PRODUCTS = [
     price: 40,
     quantity: 25,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKvZSDy4LdCKRdgYEO0WortKg8AoIDDQ3KYVRPHzXYfJbJKQyqAqJmU9lv&s=10",
     images: [],
     rating: 4.2,
     reviewsCount: 155
@@ -267,7 +267,7 @@ var INITIAL_PRODUCTS = [
     price: 160,
     quantity: 55,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqY1lDCeZXiZCbD7ppfyus6R9Odtv0w2SfXzfE3bLcuw&s=10",
     images: [],
     rating: 4.7,
     reviewsCount: 135
@@ -279,7 +279,7 @@ var INITIAL_PRODUCTS = [
     price: 700,
     quantity: 35,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiXlYUyaFWYbRapXtrG-K7N47s9Vqc32vU5bbaLH8EmQ&s=10",
     images: [],
     rating: 4.2,
     reviewsCount: 155
@@ -291,7 +291,7 @@ var INITIAL_PRODUCTS = [
     price: 30,
     quantity: 25,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKTz57MZHaBuQ2o21Glrwn0_LRwbajVVIVkZZszN-9MA&s=10",
     images: [],
     rating: 4.5,
     reviewsCount: 125
@@ -303,7 +303,7 @@ var INITIAL_PRODUCTS = [
     price: 600,
     quantity: 35,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVzecAFG6st5sPj4HMgGdhJ3yVxMikihkdD9R-yLcx_w&s=10",
     images: [],
     rating: 4.3,
     reviewsCount: 105
@@ -315,7 +315,7 @@ var INITIAL_PRODUCTS = [
     price: 600,
     quantity: 65,
     category: "computer_world",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQewq7tJ_EfYUO_7_pLkGNnF9c0x9--YpOtXKxJoccTTw&s=10",
     images: [],
     rating: 4.4,
     reviewsCount: 100
@@ -327,7 +327,7 @@ var INITIAL_PRODUCTS = [
     price: 42,
     quantity: 65,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTr5aM1kr87uuVZOM9o4voS-_ZjttgjzowKARMSz2c0xA&s=10",
     images: [],
     rating: 4,
     reviewsCount: 26
@@ -339,7 +339,7 @@ var INITIAL_PRODUCTS = [
     price: 28,
     quantity: 65,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeLV-GLriepZreknV2F9GHQ0JBS65oFBfHSp-XBmZdPKzBmBHC_oJrzv0&s=10",
     images: [],
     rating: 4.1,
     reviewsCount: 100
@@ -351,7 +351,7 @@ var INITIAL_PRODUCTS = [
     price: 14,
     quantity: 75,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrNOihREZzneDttNNBdOKTg4nolgCKmGcG_LmZ03Tx2w&s=10",
     images: [],
     rating: 4.7,
     reviewsCount: 150
@@ -363,7 +363,7 @@ var INITIAL_PRODUCTS = [
     price: 14,
     quantity: 55,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSD-07GkEWF3NK-VimUX7DN5UE0hXesA9h-_Zh7_4yY4w&s=10",
     images: [],
     rating: 4.6,
     reviewsCount: 140
@@ -375,7 +375,7 @@ var INITIAL_PRODUCTS = [
     price: 40,
     quantity: 35,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTH6aS0kutmKukMW649hpJXUVQ0QnvLK4FEyGcfpdnYQ&s=10",
     images: [],
     rating: 4.7,
     reviewsCount: 160
@@ -387,7 +387,7 @@ var INITIAL_PRODUCTS = [
     price: 40,
     quantity: 75,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://m.media-amazon.com/images/I/61j6ey6mBpL._AC_UF894,1000_QL80_.jpg",
     images: [],
     rating: 4.5,
     reviewsCount: 130
@@ -399,7 +399,7 @@ var INITIAL_PRODUCTS = [
     price: 99,
     quantity: 45,
     category: "headphones",
-    image: "https://picsum.photos/seed/watch/400/400",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDH94VTDZ6qwDB9j5nDCqUUWy_28ivy3Atuyx6wcQtNg&s=10",
     images: [],
     rating: 4.9,
     reviewsCount: 160
