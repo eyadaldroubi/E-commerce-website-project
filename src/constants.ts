@@ -53,8 +53,8 @@ export const CATEGORIES: Category[] = [
 export const INITIAL_PRODUCTS: Product[] = [
   {
     id: 'mobiles-new-1',
-    name: 'IPhone 16 PRO MAX',
-    description:' . ',
+    name: 'IPhone 17 PRO MAX',
+    description:' الشاشة والتصميم: شاشة OLED عملاقة بمقاس 6.9 بوصة بمعدل تحديث 120 هرتز وسرعة سطوع خارقة، مع هيكل من الألمنيوم الموحد المتين.الأداء والذاكرة: معالج A19 Pro الثوري مع قفزة كبيرة في الذاكرة العشوائية لتصل إلى 12 جيجابايت RAM لضمان تشغيل ميزات الذكاء الاصطناعي (Apple Intelligence) بسلاسة تامة.نظام الكاميرات: ترقية تاريخية حيث أصبحت جميع الكاميرات الخلفية الثلاث بدقة 48 ميجابكسل (الرئيسية، والواسعة جداً، والتقريب البصري)، بالإضافة إلى كاميرا أمامية بدقة 18 ميجابكسل تدعم التتبع التلقائي.البطارية والتبريد: عمر بطارية طويل تدوم بشكل اطول من قبل بفضل نظام التبريد الحراري المتطور لمنع سخونة الجهاز أثناء الألعاب الثقيلة أو التصوير الطويل. ',
     price: 1200,
     quantity: 45,
     category: 'mobiles',
@@ -2557,6 +2557,102 @@ export const INITIAL_PRODUCTS: Product[] = [
     rating: 4.4,
     reviewsCount: 130
   },
+           {
+    id: 'bee-honey-new-1',
+    name: 'عسل السدر',
+    description:' . ',
+    price: 10,
+    quantity: 85,
+    category: 'honey',
+    image: 'https://cdn.salla.sa/WGvNR/ff06e692-cf2f-4e58-9d68-4e9c040d6a63-1000x1000-4qQMiV1wo0IqNs2FPkUSbtCB47DLsxmoSecnjCzt.webp',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 110
+  },
+           {
+    id: 'bee-honey-new-2',
+    name: 'عسل المانوكا',
+    description:' . ',
+    price: 12,
+    quantity: 75,
+    category: 'honey',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcReQ1FExLMyspBRJgjtY42FvyyYP5X_g9SenALjomo12Q&s=10',
+    images: [],
+    rating: 4.9,
+    reviewsCount: 150
+  },
+           {
+    id: 'bee-honey-new-3',
+    name: 'عسل الأكاسيا',
+    description:' . ',
+    price: 13,
+    quantity: 95,
+    category: 'honey',
+    image: 'https://cdn.salla.sa/AzPdwq/V0whf6OHhf5X5EHsYj1k4BJ6GyPtL66NjE0jW5vx.png',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 130
+  },
+           {
+    id: 'bee-honey-new-4',
+    name: 'عسل الغابة السوداء',
+    description:' . ',
+    price: 9,
+    quantity: 75,
+    category: 'honey',
+    image: 'https://cdn.salla.sa/rAKNrR/7bf14e99-1670-4e52-97b6-6cc4963924a4-1000x1000-oYNciCsu3LcURy3AhoUxaDRkCsxs63xfOqdS0PQg.jpg',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 120
+  },
+           {
+    id: 'bee-honey-new-5',
+    name: 'عسل حبة البركة',
+    description:' . ',
+    price: 14,
+    quantity: 75,
+    category: 'honey',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTTWMDtJtPnM6HFeihefJehrOGQk203cPFwDO50fIVhBPSjAhIeiPkxe78&s=10',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 100
+  },
+           {
+    id: 'bee-honey-new-6',
+    name: 'عسل الملكي',
+    description:' . ',
+    price: 15,
+    quantity: 80,
+    category: 'honey',
+    image: 'https://cdn.salla.sa/alOaz/407ce447-c074-4fcb-9aea-8ccd906effca-1000x1000-0ZtpxSEyoWZXtZhI6VtbRW6v3vZJ1k7vtzgom9dt.jpg',
+    images: [],
+    rating: 4.8,
+    reviewsCount: 140
+  },
+           {
+    id: 'bee-honey-new-7',
+    name: 'عسل زهرة البرسيم',
+    description:' . ',
+    price: 14,
+    quantity: 65,
+    category: 'honey',
+    image: 'https://sokradorf.store/cdn/shop/files/Untitled_design.jpg?v=1764670250',
+    images: [],
+    rating: 4.6,
+    reviewsCount: 130
+  },
+           {
+    id: 'bee-honey-new-8',
+    name: 'عسل الكلوفر',
+    description:' . ',
+    price: 12,
+    quantity: 75,
+    category: 'honey',
+    image: 'https://media.zid.store/bea9960c-adc7-4644-97f5-2102b90432d6/9f3bd168-d870-479e-aa8f-6ae563bd49e9.jpg',
+    images: [],
+    rating: 4.7,
+    reviewsCount: 140
+  },
          {
     id: 'bee-creams-new-1',
     name: 'كريم مرطب طبيعي',
@@ -2564,7 +2660,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 10,
     quantity: 35,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4u9B1nCzxms52c5mASgyu9tbsyae8Sdc7G2_k_gAwc5ziJhra7JVLTVmJ&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 120
@@ -2576,7 +2672,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 9,
     quantity: 65,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvujDCljb58mjr8pbV5SfbQdAUuegRWTX6L4Arb2VC1g&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 145
@@ -2588,7 +2684,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 13,
     quantity: 65,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc7TdyY2eiKt0ipB9JmQx_hSs_6PtqFvulQ95joQHjcECdCORE3rVkZb0&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 100
@@ -2600,7 +2696,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 20,
     quantity: 30,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj_SMQ2MXSjJFDSOpMYJOF9jVk1rQaO-2yydABQHLYQQ&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 160
@@ -2612,7 +2708,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 75,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREv9jKX7tPbRgun1IJ04yYOPbEf17QyFgujUxen9_M-Q&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 160
@@ -2624,7 +2720,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 16,
     quantity: 65,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsRmZL7JZFVrSB93FtkUE8GGI5RV9DGFMnIzSgA9Lv1oRosHW7zeSnkMq5&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 150
@@ -2636,7 +2732,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 12,
     quantity: 65,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMhf5eajLeaN2pyTXqqg4IVqS-X3ueRozCfyzwflHo0A&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 130
@@ -2648,7 +2744,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 15,
     quantity: 45,
     category: 'creams',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP1KSD1rhB6gYN-bqUzbcNr0noAawM5fmLBJk1OavWyg&s=10',
     images: [],
     rating: 4.3,
     reviewsCount: 110
@@ -2660,7 +2756,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 65,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJu-d6jsnE5Id99hnBtGmbZSV5DFPuGChcASp1FZ9UuQ&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 110
@@ -2672,7 +2768,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 1.99,
     quantity: 65,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtasutMDNh6HYOphocIn0Uqk_EEiKcAWk6JNZCaHhxYg&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 140
@@ -2684,7 +2780,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 1.99,
     quantity: 75,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzADoDwe78eqwRyOw-lDZB1YwJN_WAaska2ASxRw3OBQ&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 100
@@ -2696,7 +2792,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 2.99,
     quantity: 45,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBFuYJSgTDnv9Q_f1o6ejB7teotpp2NM_BKKjKkEo1wjmM2Y4oAoYQkN0&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 130
@@ -2708,7 +2804,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 0.99,
     quantity: 25,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdmgocQg4aZo5jbCVsnN9c2jjkEQxfxP0ANFFgelcbaA&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 130
@@ -2720,7 +2816,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 0.99,
     quantity: 95,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW2b9mIACctst4b5hJvFQc4B0jujNH47jz9qKUOXuGNQ&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 160
@@ -2732,7 +2828,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 0.99,
     quantity: 75,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcvIiCJr3-brjVjm7rqZSP6GEwZZBJ2cF-u9699bjToA&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 190
@@ -2744,7 +2840,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 0.99,
     quantity: 45,
     category: 'herbs',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQ98x_4Zy2ThRB308i92CKbgV0kDuSZ-R6s6NcZq8YQ&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 100
@@ -2756,7 +2852,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 10,
     quantity: 45,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ2ZrPDxZHHGRf7fdOo0FxO27B3W9d2OuP0nZx73cJiQ&s',
     images: [],
     rating: 4.6,
     reviewsCount: 100
@@ -2768,7 +2864,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 7,
     quantity: 25,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRn1cOr7ovqIjBvyyBS8zDhYLOAKTzF9nArAR0azq_zg&s=10',
     images: [],
     rating: 4.4,
     reviewsCount: 130
@@ -2780,7 +2876,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 17,
     quantity: 45,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlBdT88suhQk5G9UxbRm63_23SN_eUDii7m_wSCErudg&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 100
@@ -2792,7 +2888,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 15,
     quantity: 65,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo4UWrIVF-kYnzyQmjcd-o3YtXlSs_fDLMS6m7nkmHjiYrwstoIVl7rUZA&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 120
@@ -2804,7 +2900,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 16,
     quantity: 25,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr4uBdtgrtMKJwqu5lQ-ay0Usm4yQBmUjRhgiT8XfK1w&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 170
@@ -2816,7 +2912,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 12,
     quantity: 65,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv5sV0dmlS4-agomKg3TNJx-BJ5WxcHOEZR0LMzT_hNHgj05J7Sz_SC85X&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 150
@@ -2828,7 +2924,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 15,
     quantity: 65,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxcbBnxfOJPDTqghjj28ddyMc8FBwhhrOJ6jfYpb6xOA88SCDrwZ-cqkRG&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 140
@@ -2840,7 +2936,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 13,
     quantity: 35,
     category: 'shampoos',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/AzXxmG/io9NPGDilp7EapBqNCxgEmAfzNHDDJnhYzXuQo0J.jpg',
     images: [],
     rating: 4.5,
     reviewsCount: 130
@@ -2852,7 +2948,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 13,
     quantity: 45,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQWy8j6Hznfj0BtJKsnyBWavoVfgz1DOSv8lvDMVj3-zA&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 150
@@ -2864,7 +2960,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 45,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSawc1rZg3BZTGzgLuRve_C-7ppNxhq4qMAQFt6LhzQTg&s',
     images: [],
     rating: 4.0,
     reviewsCount: 180
@@ -2876,7 +2972,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 9,
     quantity: 35,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT3xFhZnRzTcTwc5mi0OPpPyM4f0jqKR7VzFeCyWVKoiI8xwfYI60fdJ3E&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 150
@@ -2888,19 +2984,19 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 55,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT13KatIGgNMdPNkvFxNleHvCIAUAFKQ5ucwX-zGJvj-Q&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 170
   },
              {
     id: 'bee-incense-new-5',
-    name: 'بخور الهندي',
+    name: 'بخور سيوفي الهندي',
     description:' . ',
     price: 18,
     quantity: 65,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://3lcost.com/public/upload/product_images/202501142133313761846n-a.webp',
     images: [],
     rating: 4.8,
     reviewsCount: 120
@@ -2912,7 +3008,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 25,
     quantity: 45,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXfzlehhAqRzdWJntjAHcMwOxam95WukdW73qnH0E_nQ&s',
     images: [],
     rating: 4.5,
     reviewsCount: 140
@@ -2924,19 +3020,19 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 35,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFM-TX-mK7oyObvOm20zVtCPwRseiS3YrakIvT1qu6pA&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 110
   },
              {
     id: 'bee-incense-new-8',
-    name: 'بخور االكمبودي',
+    name: 'بخور الكمبودي',
     description:' . ',
     price: 19,
     quantity: 25,
     category: 'incense',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJOQ_fmpUYakgwMw9kSUkGFxjAgBDX1ikYnudshWIrDQ&s=10',
     images: [],
     rating: 4.4,
     reviewsCount: 120
@@ -2948,7 +3044,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 2.99,
     quantity: 95,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/ARbO/2YOj34pXTWYr9cSVVTGbZ7bf5F0YpIu6MO4cr9C1.jpg',
     images: [],
     rating: 4.9,
     reviewsCount: 170
@@ -2960,7 +3056,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 4.99,
     quantity: 65,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbx5foj-Wt0lNS7fV9D8XKZwo01qPl4A6u9Cnd82FWqg&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 110
@@ -2972,7 +3068,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 1.99,
     quantity: 85,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSm6Gu7hc7ui3CbCNWE91P9d_WefJ58V9570ecCWFtJVuPBNsXKYqCvw-mx&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 120
@@ -2984,7 +3080,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 3.99,
     quantity: 75,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://beewayfamily.com/wp-content/uploads/2024/09/4-3.png',
     images: [],
     rating: 4.7,
     reviewsCount: 160
@@ -2996,7 +3092,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 1.99,
     quantity: 75,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQt6tUpqG2IgsnOFLtjvrirOqv6zyD-NtqHHcq-vDNHw&s=10',
     images: [],
     rating: 4.3,
     reviewsCount: 140
@@ -3008,7 +3104,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 5.99,
     quantity: 55,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYrllHun9GHWySVXHPhdxF48VaMiPLZtXRl01IPI_gmqRvAHMU-FxeTGUS&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 130
@@ -3020,7 +3116,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 4.99,
     quantity: 85,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://beepharma.com/prosimgs/hony_soap.jpg',
     images: [],
     rating: 4.8,
     reviewsCount: 140
@@ -3032,7 +3128,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 4.99,
     quantity: 65,
     category: 'natural_soap',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQitPRNLT-uf5ob3JPF46iihS1HUIlpQJ7sD1FG1SvwZg&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 150
@@ -3044,7 +3140,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 49,
     quantity: 75,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/WGvNR/dfd59937-d9c8-437e-a29c-581c89b520e1-1000x1000-rMxaQSEdH4aYtuDBvE8evZ30HKITd6jXZbC5t3Gb.webp',
     images: [],
     rating: 4.7,
     reviewsCount: 120
@@ -3056,7 +3152,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 15,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRP2EO4nptHKW2-tNpjnFvzkmT_WCK0vYIz9jtbOxtOYpf2rllzMnrRG_c&s=10',
     images: [],
     rating: 4.2,
     reviewsCount: 100
@@ -3068,7 +3164,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 14,
     quantity: 35,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/aeVOZ/1cKSilLTYKOEkCUQ26UfKnRf6XA2sD7fxBwr0bVb.jpg',
     images: [],
     rating: 4.4,
     reviewsCount: 110
@@ -3080,7 +3176,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 11,
     quantity: 45,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5yCF2dqp8r2Xlji4J4wd5w-3haRdvAvUDaGGLaKDBHA&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 110
@@ -3092,7 +3188,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 9,
     quantity: 25,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVkS7I9neJePjchrMKp0-1sw71uC3dG9wx9n7A0i16qg&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 100
@@ -3104,7 +3200,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 20,
     quantity: 65,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt9HGCtqp8Joy_MKtNVVWovjO3DlH6aoKmYDg3b2hqRw&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 140
@@ -3116,7 +3212,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 35,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://www.mielleriemazouni.com/cdn/shop/files/DSC07228.jpg?v=1762862645&width=1920',
     images: [],
     rating: 4.6,
     reviewsCount: 150
@@ -3128,7 +3224,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 39,
     quantity: 45,
     category: 'therapeutic_mixtures',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu6KuH64FSvDgyQlux9AeYp8xywgk4ac4fMucXw9cDMA&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 160
@@ -3140,7 +3236,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 49,
     quantity: 65,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiNHyhfKYFmDhYos2ix89NNfK8brXQc4KXrjmtw0URYA&s',
     images: [],
     rating: 4.5,
     reviewsCount: 140
@@ -3152,7 +3248,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 40,
     quantity: 75,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrNfysEd90XDqEZ2ZSgKpEppTeqZLgIoOvxYffc3UK2Q&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 130
@@ -3164,7 +3260,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 55,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv4YFb0BcbecPlpRR_LYZBI5TgjALVXW4xqbc-Tq3wlA&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 160
@@ -3176,7 +3272,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 65,
     quantity: 45,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMuPYjU-Mk0tM-keqB5iw_x-lxzX-qXqofsv8nAXAsPg&s',
     images: [],
     rating: 4.7,
     reviewsCount: 120
@@ -3188,7 +3284,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 35,
     quantity: 35,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzDrDpdOyRdaaDfMPA8Q6LPWnR7NvuE1j_nTIEwiGdM0RHGtrN5JAWQsQm&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 130
@@ -3200,7 +3296,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 59,
     quantity: 35,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR840VdUbQcmg66yIrhStD5KuVJf2gv2o8xBVjV_jStVA&s=10',
     images: [],
     rating: 4.3,
     reviewsCount: 160
@@ -3212,7 +3308,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 45,
     quantity: 35,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgQh9v7a3It0VU7cpD67o9_TV6Df-OewsgW4yII7kXuA&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 170
@@ -3224,7 +3320,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 37,
     quantity: 45,
     category: 'skin_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEmhKHbxVa_FVAjav_YAOIWHIArgcbdmrtAutyGhWuqVlBbwW8TEpnJKY&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 100
@@ -3236,7 +3332,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 45,
     quantity: 55,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://static2.kryolan.com/sites/default/files/products/11055_00/960/11055_00_prod_default_960.jpg',
     images: [],
     rating: 4.5,
     reviewsCount: 120
@@ -3248,7 +3344,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 65,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMF91dIBNzUJiUjvYEuLWXNHFK9JaRkJL06wL0eoxM0g&s',
     images: [],
     rating: 4.4,
     reviewsCount: 170
@@ -3260,7 +3356,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 39,
     quantity: 35,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHuhRFHC8Vh2Cm-hhOFN5uLiNGomffJJruXQK2rPzKgA&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 160
@@ -3272,43 +3368,43 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 49,
     quantity: 45,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPqxWqp3VId67urMJg4MuCN53dmTlO-XKsgOahr78nSw&s',
     images: [],
     rating: 4.8,
     reviewsCount: 150
   },
          {
     id: 'makeup-new-5',
-    name: 'االهايلايتر',
+    name: 'الهايلايتر',
     description:' . ',
     price: 35,
     quantity: 75,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1VfFR2vbFBoiQ-OT814gffp4m0Bei2oP008O8iegp5Q&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 140
   },
          {
     id: 'makeup-new-6',
-    name: 'االبودرة',
+    name: 'البودرة',
     description:' . ',
     price: 49,
     quantity: 75,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRjGNQvxCc8OpzICOtyr91Lsw0LjUHhlRejCc1YgWH9g&s=10',
     images: [],
     rating: 4.3,
     reviewsCount: 110
   },
          {
     id: 'makeup-new-7',
-    name: 'خافي العيوب',
+    name: 'خافي العيوب فول كوفر',
     description:' . ',
     price: 39,
     quantity: 65,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://www.makeupforever.sa/dw/image/v2/BDCL_PRD/on/demandware.static/-/Sites-mufe-master-catalog/default/dwe1b112c1/images/12304/3548752023078_12304_Full-Cover-Chair_Face_0.jpg?sw=550&sh=550&sfrm=png&bgcolor=ffffff',
     images: [],
     rating: 4.7,
     reviewsCount: 160
@@ -3320,7 +3416,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 49,
     quantity: 45,
     category: 'makeup',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjEs14SRQTUShtyy72W7fvWcutBMaTvEq70kX5-4LnUEhi_LAokqk7-94&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 140
@@ -3332,7 +3428,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 49,
     quantity: 65,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROS09H2a-lfr1lTybXyVdbNdGJ194ayyNWbJmmkCjd2w&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 120
@@ -3344,7 +3440,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 25,
     quantity: 45,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlcO7kecsUtFolHuHDqF-3lCgANyotwgU1PXXnbAKPLw&s=10',
     images: [],
     rating: 4.3,
     reviewsCount: 130
@@ -3356,7 +3452,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 25,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT73v59SLkF0OWSuxBc-2Wzn0Kfkh_0gXh32dMfbny76_uVzxlrRB7fgnwM&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 150
@@ -3368,7 +3464,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 39,
     quantity: 55,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3ra6-78PV1lNpjeOyliwIOXi2SLTSWHqp6GlGY5hQmA&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 140
@@ -3380,7 +3476,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 35,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQSudCcpLUyHHmKMc9C5JyXQv35rncMcuxR0il7wRIGQ&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 100
@@ -3392,7 +3488,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 25,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRearrtHcN4wAjwsobgwk24xqAkzAQhMN5Fim9KGqAo3lLF1vdF88pviWct&s=10',
     images: [],
     rating: 4.1,
     reviewsCount: 110
@@ -3404,7 +3500,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 28,
     quantity: 45,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://kolshzin.com/wp-content/uploads/2025/06/%D9%83%D8%B1%D8%B3%D8%AA%D8%A7%D8%B3-%D9%83%D8%B1%D9%8A%D9%85-%D9%83%D8%B1%D9%88%D9%86%D9%88%D9%84%D9%88%D8%AC%D9%8A%D8%B3%D8%AA-%D9%88%D8%A7%D9%82%D9%8A-%D8%AD%D8%B1%D8%A7%D8%B1%D8%A9-150-%D9%85%D9%84.webp',
     images: [],
     rating: 4.4,
     reviewsCount: 150
@@ -3416,7 +3512,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 39,
     quantity: 35,
     category: 'hair_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7KRfL5Eefm56aXoSl57hMz4cy1pOkuU2SVNPKdtY_zA&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 130
@@ -3428,7 +3524,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 400,
     quantity: 25,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRs7ve5EDWyrvLWBCCSTuozofYuHfsp7YA_xv44WIoZlm4P5-OITldL7QI&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 110
@@ -3440,7 +3536,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 420,
     quantity: 65,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjazGy-ZAmAXOE4j5rgAeEQPd3DRK9AKKmL6iius5l2Q&s',
     images: [],
     rating: 4.2,
     reviewsCount: 170
@@ -3452,7 +3548,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 350,
     quantity: 45,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRs-479b_KtyYcNEIHe7Mmu-BGoUcETZUW8o9cnYPPuA&s=10',
     images: [],
     rating: 4.3,
     reviewsCount: 120
@@ -3464,7 +3560,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 150,
     quantity: 25,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSd2rFyTDFaL9JidV-X8vW53xjL3ztFwWfYSm1F4Rga7Q&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 100
@@ -3476,7 +3572,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 100,
     quantity: 35,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRbsoOCOkdeH3OuXzkU57nug3uhp4Gw9qBpgSHOXZgIw&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 160
@@ -3488,7 +3584,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 450,
     quantity: 65,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ98N3VNT1Mq1nOy32SbR6ZDO4gYs2bZtj_YQIr097dc0xNF1Rd4r2CtLtJ&s=10',
     images: [],
     rating: 4.4,
     reviewsCount: 150
@@ -3500,7 +3596,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 250,
     quantity: 55,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEdEVbzvfondHrxX3l_qf2eBFKgXdN2vA2NzeDQ7HEWw&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 140
@@ -3512,7 +3608,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 300,
     quantity: 35,
     category: 'mens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVSqAaAPMmgujb8rEVFY57kDp1WwEIwj6s7jQRYog88g&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 140
@@ -3524,7 +3620,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 400,
     quantity: 45,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuZMZWO2BRlJZDZBnaBB03y4g-NF4rhcS4ydFhWQXGuQ&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 180
@@ -3536,7 +3632,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 200,
     quantity: 45,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLv7eLdUBjJ1rd4ymJgpQ0iK0aPGdn8rT5znRjtz_pMw&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 140
@@ -3548,7 +3644,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 420,
     quantity: 35,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/AyzDQ/5Vwq1lp5dda8oKhNnuaHq0bbphfsv3Wy8ZzO7nfz.jpg',
     images: [],
     rating: 4.8,
     reviewsCount: 165
@@ -3560,7 +3656,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 370,
     quantity: 65,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/brdyz/LQH9spte29wXVahJEJl8uRsxCnGsTbiW5G0cAWHm.jpg',
     images: [],
     rating: 4.7,
     reviewsCount: 190
@@ -3572,7 +3668,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 500,
     quantity: 35,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOsU_PAi4HidlF5MZY-IMcO24ZlgnmiqtBfmrmG6lYLA&s=10',
     images: [],
     rating: 4.9,
     reviewsCount: 175
@@ -3584,7 +3680,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 460,
     quantity: 75,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyD6epb2AGBIpxLigx42GpS1G3hT7NZYsMxXue5nRd1w&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 185
@@ -3596,7 +3692,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 390,
     quantity: 35,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjEOCf_h5NI74X9yhKEhC7h7jUbTV1wkD62yZQzLBQ9w&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 170
@@ -3608,7 +3704,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 450,
     quantity: 65,
     category: 'womens_perfumes',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSs3nnZA8fgExhEKU8YeoTgkEfJ5a9Kf9d5TkvMw-KoiA&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 190
@@ -3620,7 +3716,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 40,
     quantity: 75,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDw-59eNk8PJcR2lBGSY8fP0LdJWFjRpfFjBmZuW_h4A&s=10',
     images: [],
     rating: 4.1,
     reviewsCount: 60
@@ -3632,7 +3728,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 13,
     quantity: 35,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgTmlBHB-Aybmxjd3fuwOG1zqZFCvpImcDCuSNWRsWyMd2UZFYsSSNf2fP&s=10',
     images: [],
     rating: 4.0,
     reviewsCount: 10
@@ -3644,7 +3740,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 4,
     quantity: 75,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRipqps4bF3BUUW7lXgNf3v8u62gfJjbwh_3r3_awPG7JXmcCOA1DkyieU&s=10',
     images: [],
     rating: 4.1,
     reviewsCount: 60
@@ -3656,7 +3752,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 17,
     quantity: 35,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://target.scene7.com/is/image/Target/GUEST_f1383290-9f0e-48e9-9598-5717b76e2383?wid=384&qlt=80',
     images: [],
     rating: 4.7,
     reviewsCount: 30
@@ -3668,7 +3764,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 23,
     quantity: 45,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEqU9kx6W8jt_u0oCxQ4pi2GV0sgdoTEG5wbzTYgBUeg&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 40
@@ -3680,7 +3776,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 65,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1Mdu10aaPK3oHfXygw-ay4kBl7MbH6D7aj4vrHPemrw&s=10',
     images: [],
     rating: 4.4,
     reviewsCount: 20
@@ -3692,7 +3788,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 4.99,
     quantity: 65,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://totexcosmetic.com/img/product/shavelotion/4.png',
     images: [],
     rating: 4.5,
     reviewsCount: 20
@@ -3704,7 +3800,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 10,
     quantity: 85,
     category: 'mens_care',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS2E_gOlCuERJBMIqWhmKavta6VwzJywh7YJYEE2H8Aw&s=10',
     images: [],
     rating: 4.2,
     reviewsCount: 30
@@ -3716,7 +3812,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 20,
     quantity: 85,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGefdHcU4E8yHVr4eTHe3-0iOk3A8Fn2LOhzYnYFvpk3xZXdD9fHXVrw0&s=10',
     images: [],
     rating: 4.5,
     reviewsCount: 90
@@ -3728,7 +3824,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 20,
     quantity: 45,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlpFY5IAfF_lJLaLVo7uMeeltnjlhaxjt_4j3zlxsHUBUwyD48tvSYWaA&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 70
@@ -3740,7 +3836,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 29,
     quantity: 55,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-y4uESVwvwIa9MCXSX_0hL6AB5o11qalbTTw1C4Ultw&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 70
@@ -3752,7 +3848,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 19,
     quantity: 25,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSadKF_SvNmzgkgUnKJEX7y-9AOjyDmSlIXzVqnCEceZg&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 40
@@ -3764,7 +3860,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 12,
     quantity: 65,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxzdX1Cln3Nv1stiAhYlsrmLOd-IJ_upw04g7eOF8P9qGzXPykayu2Y1o&s=10',
     images: [],
     rating: 4.4,
     reviewsCount: 80
@@ -3776,7 +3872,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 6,
     quantity: 75,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaq_pb43a8hoUlSd4tP1ozU_ZjO5vRqVf4uAJjN_l5aBl93qXRq3qMo8A&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 110
@@ -3788,7 +3884,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 15,
     quantity: 45,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMWY3FIpjOXe71_XC_j4wnIoqHyUMxwggMHtC9vV7vWD0AZUyWqbK60Hw&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 80
@@ -3800,7 +3896,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 16,
     quantity: 35,
     category: 'seasonal_products',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTguwwwXxlYuPf0R90VfwjlGzinaL-iaGmDviLE8vFqpw&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 70
@@ -3812,7 +3908,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 50,
     quantity: 35,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhe3gSplocOIuz1KLcPL2h6ZaKnluNb_cpEGJofk4RcQ&s=10',
     images: [],
     rating: 4.8,
     reviewsCount: 100
@@ -3824,7 +3920,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 60,
     quantity: 25,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFXuPzy_qTFj0cwNyvddIBYbRju4OfH-MZIwcax_waP5JFmRzvtO3aNNI&s=10',
     images: [],
     rating: 4.4,
     reviewsCount: 130
@@ -3836,7 +3932,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 70,
     quantity: 45,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://www.panasonic.com/content/dam/pim/mi/ar/EH/EH-SA3/EH-SA31/EH-SA31-Product_ImageGlobal-1_mi_ar.png',
     images: [],
     rating: 4.8,
     reviewsCount: 140
@@ -3848,7 +3944,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 80,
     quantity: 25,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8SvP_9j_b0565TP5zFst5WSL2ck0dS675EtIguTzggA&s=10',
     images: [],
     rating: 4.7,
     reviewsCount: 150
@@ -3860,7 +3956,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 73,
     quantity: 55,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxwlYXAqo31KM6ph0LXBIt9n_0O41dUnS19au-qKCFkw&s',
     images: [],
     rating: 4.6,
     reviewsCount: 120
@@ -3872,19 +3968,19 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 85,
     quantity: 65,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://cdn.salla.sa/ePOOBv/08c138a7-a73b-4b71-bca9-eb077576aa57-1000x1000-1kOAV6hTQ3deBY56XJrnHTOm60pEhrH74h2CPk0p.jpg',
     images: [],
     rating: 4.7,
     reviewsCount: 110
   },
        {
     id: 'beauty_devices-new-7',
-    name: 'جهاز الهايفو',
+    name: 'جهاز الهايفو لشد البشرة',
     description:' . ',
     price: 75,
     quantity: 65,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiUkEq0MS88cjiSqdxnSlusz1OFIfX_DIx8FizqkOupQ&s=10',
     images: [],
     rating: 4.6,
     reviewsCount: 130
@@ -3896,7 +3992,7 @@ export const INITIAL_PRODUCTS: Product[] = [
     price: 45,
     quantity: 45,
     category: 'beauty_devices',
-    image: 'https://picsum.photos/seed/watch/400/400',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzk187YpMuicespDRabPpT_cZzcZVU4xW1gl71iROlJA&s',
     images: [],
     rating: 4.7,
     reviewsCount: 120
